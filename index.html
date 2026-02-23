@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="src/assets/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+        </symbol>
+        <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path
+                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+        </symbol>
+        <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path
+                d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+        </symbol>
+    </svg>
+    <title>Conversiones de Bolivares</title>
+</head>
+
+
+<body>
+    <header class="text-white p-0">
+        <div class="d-flex align-middle">
+            <!-- <img class="d-none d-lg-block" src="./src/assets/flags_vzla.png" style="width: 100px; height: 100px;"
+                alt="Bandera de Venezuela"> -->
+            <img class="m-3" src="src/assets/logo_bolivares-removebg-preview.png" style="width: 70px; height: 60px;" alt="Logo Bs">
+            <h1 class="p-3 m-2"> Valor del Dolar<br>Conversiones</h1>
+        </div>
+    </header>
+
+    <!-- TODO Fecha y Hora -->
+    <div class="d-flex justify-content-between contenedor-dataTime">
+        <div class="date-time">
+            <div id="current-date" class="text-black p-1" style="font-weight: 600;">Fecha: <span id="date">date</span>
+            </div>
+            <div id="current-time" class="text-black" style="font-weight: 800;">Hora: <span id="time">time</span></div>
+        </div>
+        <!-- TODO Botón para mostrar el conversor -->
+        <div class="boton-convertidor">
+            <button id="show-converter" type="button" class="btn btn-outline-secondary">Ir a
+                Convertidor</button>
+        </div>
+    </div>
+
+    <main class="container">
+        <!-- CONVERSOR -->
+        <!-- TODO: Contenedor del conversor, inicialmente oculto -->
+        <div id="converter-container" style="display: block; width: 100%;">
+            <div class="container-conversor">
+                <h2>Convertidor</h2>
+                <div class="subtitulo">Convierte dolares, euros, pesos colombianos y bolivares.</div>
+                <form class="field-container" id="currency-form">
+                    <div class="form-group">
+                        <label for="amount">Cantidad a convertir:</label>
+                        <input type="number" id="amount" class="form-control"
+                            placeholder="Ingrese la cantidad a convertir..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="from">Moneda a convertir:</label>
+                        <select id="from" class="form-control"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="to">Moneda a obtener:</label>
+                        <select id="to" class="form-control"></select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: auto; font-weight: 700;">Convertir <i
+                            class="fas fa-arrow-right"></i></button>
+                    <br>
+                    <button type="button" id="refresh" class="btn btn-secondary"
+                        style="width: auto; font-weight: 700;">Actualizar Tasas <i class="fas fa-sync-alt"></i></button>
+                </form>
+                <hr>
+                <div>
+                    <h3>Resultado</h3>
+                    <p id="result"></p>
+                </div>
+                <hr>
+                <div id="history">
+                    <h3>Historial de Conversiones</h3>
+                    <ul id="history-list"></ul>
+                </div>
+                <button id="close-converter" class="btn btn-danger" style="font-weight: 700;">Ocultar
+                    Convertidor</button>
+            </div>
+        </div>
+
+        <!-- DOLAR BCV - EURO BCV -->
+        <div class="container-valorDollar rounded-2">
+            <div class="alert alert-dark my-2;" role="alert">
+                <strong>Valor del Dolar BCV</strong>
+            </div>
+            <!--TODO: Dolar BCV-->
+            <div>
+                <div class="d-flex align-items-center mb-0">
+                    <img src="src/assets/Banco_Central_de_Venezuela_logo_sf.png" width="60px" height="60px"
+                        alt="Logo Banco Central de Venezuela" class="rounded-circle">
+                    <div class="p-3">
+                        <h2>BCV</h2>
+                        <a href="https://www.bcv.org.ve/" target="_blank"
+                            class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Sitio
+                            web del BCV</a>
+                    </div>
+                </div>
+                <div id="resultadoBcv" style="font-size: 18px; font-weight: 700; text-align: left;">Cargando datos...
+                </div>
+                <br>
+                <button id="actualizar" type="button" class="btn btn-outline-success">Actualizar Datos <i
+                        class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+            <hr>
+            <div class="alert alert-dark my-2;" role="alert">
+                <strong>Valor del Euro BCV</strong>
+            </div>
+            <!--TODO: Euro BCV-->
+            <div>
+                <div class="d-flex align-items-center mb-0">
+                    <img src="src/assets/euro-vector-icon-money_sf.png" width="90px" height="90px" alt="logo del euro">
+                    <div class="p-2">
+                        <h2>BCV</h2>
+                        <a href="https://www.bcv.org.ve/" target="_blank"
+                            class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Sitio
+                            web del BCV</a>
+                    </div>
+                </div>
+                <div id="resultadoEuroOficial" style="font-size: 18px; font-weight: 700; text-align: left;">Cargando
+                    datos...
+                </div>
+                <br>
+                <button id="actualizarEuro" type="button" class="btn btn-outline-success">Actualizar Datos <i
+                        class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- DOLAR PARALELO BINANCE - TASA TRM -->
+        <div class="container-bolivarDolarPesos rounded-2">
+            <div class="alert alert-dark my-2;" role="alert">
+                <strong>Valor del Dolar Paralelo</strong>
+            </div>
+            <!--TODO: Dolar PARALELO-->
+            <div>
+                <div class="d-flex align-items-center mb-1">
+                    <img src="src/assets/Binance_Logo_sf.png" width="60px" height="60px" alt="Logo EnParaleloVzla"
+                        class="rounded-circle">
+                    <h2 style="padding: 2%;">P2P Binance</h2>
+                </div>
+
+                <div id="resultadoParalelo" style="font-size: 18px; font-weight: 700; text-align: left;">Cargando
+                    datos...
+                </div>
+                <br>
+                <button id="actualizarParalelo" type="button" class="btn btn-outline-success">Actualizar Datos
+                    <i class="fas fa-sync-alt"></i></button>
+            </div>
+            <hr>
+
+            <!--TODO: Dolar TRM Colombia-->
+            <div class="alert alert-dark my-2;" role="alert">
+                <strong>Tasa Representativa del Mercado (TRM).</strong>
+            </div>
+
+            <div class="d-flex align-items-center">
+                <img src="src/assets/colombia-symbol-colombian-peso-icon-cop_sf.png" width="90px" height="90px"
+                    alt="Logo Valor del dolar">
+                <h2>Pesos COP</h2>
+            </div>
+            <div>
+                <div id="valorDolarTRM">Cargando...</div>
+                <button id="actualizarTRM" type="button" class="btn btn-outline-success">Actualizar Datos <i
+                        class="fas fa-sync-alt"></i></button>
+            </div>
+        </div>
+
+        <!-- FACTOR DE CONVERSION - BOLIVARES A PESOS - PESOS A BOLIVARES -->
+        <div class="container-factores rounded-2">
+            <div class="p-3 text-dark shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+                <!-- TODO: Valor del Factor de Conversion TRM/Dolar paralelo -->
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                        <use xlink:href="#exclamation-triangle-fill" />
+                    </svg>
+                    <strong class="m-2">Factor de Conversión</strong>
+                </div>
+                <div class="bg-warning rounded border mb-1">
+                    <h4 class="subtitulo">TRM/Dolar paralelo.</h4>
+                    <div id="factor-value" class="h2 text-danger font-weight-bold text-center align-middle">Cargando...
+                    </div>
+                </div>
+                <div class="bg-white rounded border">
+                    <h4 class="subtitulo">TRM/Dolar oficial.</h4>
+                    <div id="factor-value-2" class="h2 text-primary font-weight-bold text-center align-middle">
+                        Cargando...</div>
+                </div>
+            </div>
+
+            <hr>
+            <!--TODO: Bolivares a Pesos COP-->
+            <div class="p-3 mb-2 bg-success bg-gradient text-dark shadow p-3 mb-5 bg-body-tertiary rounded">
+                <div class="alert alert-success d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                        <use xlink:href="#check-circle-fill" />
+                    </svg>
+                    <strong class="m-2">Convertir: Bolívares a Pesos (COP)</strong>
+                </div>
+                <div class="form-group">
+                    <label for="input-bolivares" class="font-weight-bold">Ingrese la cantidad en Bolívares
+                        (VES):</label>
+                    <input class="h4" type="number" id="input-bolivares" placeholder="Ej: 1500"
+                        oninput="convertirACop()">
+                </div>
+
+                <div class="bg-light rounded border p-2">
+                    <h5 class="text-secondary">Recibes:</h5>
+                    <div class="h2 text-success font-weight-bold">
+                        <span id="resultado-cop">0.00</span> <span class="h4">COP</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            <!--TODO: Pesos COP a Bolivares-->
+            <div class="p-3 mb-2 bg-primary bg-gradient text-dark shadow p-3 mb-5 bg-body-tertiary rounded">
+                <div class="alert alert-primary d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                        <use xlink:href="#check-circle-fill" />
+                    </svg>
+                    <strong>Convertir: Pesos a Bolivares (VES)</strong>
+                </div>
+                <div class="form-group">
+                    <label for="input-pesos" class="font-weight-bold">Ingrese la cantidad en Pesos
+                        (COP):</label>
+                    <input class="h4" type="number" id="input-pesos" placeholder="Ej: 1500" oninput="convertirABs()">
+                </div>
+                <div class="bg-light rounded border p-2">
+                    <h5 class="text-secondary">Recibes:</h5>
+                    <div class="h2 text-primary font-weight-bold">
+                        <span id="resultado-bs">0.00</span> <span class="h4 ">VES</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-right p-3">
+        <p>©2026 Convertir Bolivares - Dolares - Pesos. - Todos los derechos reservados.</p>
+        <h5>Author: Jairo Cárdenas<br>
+            <!-- <a href="mailto:jairo.cardenas.dev@gmail.com">jairo.cardenas.dev@gmail.com</a> -->
+        </h5>
+        <p><a href="mailto:jairo.cardenas.dev@gmail.com"
+                class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">jairo.cardenas.dev@gmail.com</a>
+        </p>
+        <h5 class="paleta"><a href="https://colorhunt.co/palette/313647435663a3b087fff8d4" target="_blank">paleta de
+                colores</a></h5>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

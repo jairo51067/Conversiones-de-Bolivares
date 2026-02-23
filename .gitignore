@@ -1,0 +1,6 @@
+node_modules/
+.env
+index_original.html
+new.script_original.js
+img
+styles_generales.css
