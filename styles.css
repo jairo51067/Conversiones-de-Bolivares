@@ -59,7 +59,8 @@ header h1 {
 
 /* Contenedores */
 .contenedor-dataTime{
-  background-color: #A3B087;
+  /* background-color: #A3B087; */
+  background-color: white;
 }
 
 .date-time {
@@ -95,7 +96,8 @@ header h1 {
   padding: 2rem;
   /* Espaciado interno */
   /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
-  background-color: #A3B087;
+  /* background-color: #A3B087; */
+  background-color: white;
   /* Fondo claro por defecto */
   margin: 0 auto;
   /* Centrado */
@@ -112,7 +114,7 @@ header h1 {
   /* Espaciado proporcional */
   margin: 0 auto;
   /* Espaciado interno proporcional */
-  padding: 4%;
+  padding: 5%;
   /* Sombra */
   /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
   /* Fondo claro por defecto */
@@ -473,7 +475,7 @@ th {
   .container {
     flex-direction: column;
     /* Apilado vertical */
-    padding: 0.7rem;
+    padding: 1.5rem;
     /* Sin padding */
     margin: 0;
     /* Sin margen */
