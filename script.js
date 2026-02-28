@@ -175,17 +175,35 @@ async function obtenerDatosDolar() {
     // Mostrar los datos en la consola (para depuración)
     console.log("Datos obtenidos de la API:", data);
 
-    // Mostrar los datos en el div (puedes personalizar el formato)
+    // --- INICIO DEL CAMBIO ---
+    // Obtener la fecha y hora actual del dispositivo
+    const fechaActualizacion = new Date();
+    
+    // Formatear la fecha (DD/MM/YYYY)
+    const dia = String(fechaActualizacion.getDate()).padStart(2, "0");
+    const mes = String(fechaActualizacion.getMonth() + 1).padStart(2, "0");
+    const anio = fechaActualizacion.getFullYear();
+    const fechaFormateada = `${dia}/${mes}/${anio}`;
+    
+    // Formatear la hora (HH:MM:SS)
+    const hora = String(fechaActualizacion.getHours()).padStart(2, "0");
+    const minutos = String(fechaActualizacion.getMinutes()).padStart(2, "0");
+    const segundos = String(fechaActualizacion.getSeconds()).padStart(2, "0");
+    const horaFormateada = `${hora}:${minutos}:${segundos}`;
+    // --- FIN DEL CAMBIO ---
+
+    // Mostrar los datos en el div (con fecha y hora del dispositivo)
     divResultado.innerHTML = `
          <strong>Promedio:</strong> ${data.promedio} Bs<br>
-         <strong>Última actualización:</strong> ${data.fechaActualizacion.split("T")[0]}`;
+         <strong>Última actualización:<br>
+         </strong> ${fechaFormateada} a las ${horaFormateada}`;
+         
   } catch (error) {
     // Mostrar mensaje de error si algo falla
     divResultado.innerHTML = `Error al cargar los datos: ${error.message}`;
     console.error("Error:", error);
   }
 }
-
 // Agregar event listener al botón para actualizar los datos
 document
   .getElementById("actualizar")
@@ -220,7 +238,6 @@ async function obtenerDatosEuroOficial() {
 
     // Mostrar en el div (puedes personalizar el formato)
     divResultado.innerHTML = `
-           
             <strong>Promedio:</strong> ${data.promedio} Bs<br>
             <strong>Última actualización:</strong> ${data.fechaActualizacion.split("T")[0]}`;
   } catch (error) {
