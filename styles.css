@@ -116,7 +116,7 @@ header h1 {
   /* Espaciado interno proporcional */
   padding: 5%;
   /* Sombra */
-  /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
   /* Fondo claro por defecto */
   background-color: #FFF8D4;
   /* background: rgb(94, 240, 3); */
