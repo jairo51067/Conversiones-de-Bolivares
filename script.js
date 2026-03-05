@@ -1,3 +1,16 @@
+// Saludo de bienvenida
+function mostrarSaludo() {
+  const saludo = "¡Bienvenido al Conversor de Monedas!";
+
+  // Opción A: Mensaje de éxito (Verde, más amigable)
+  alertify.success(saludo);
+
+  // Opción B: Mensaje estándar (Gris, igual al alert original)
+  // alertify.alert(saludo);
+  
+}
+mostrarSaludo();
+
 // TODO: Claves de API
 const apiKeyExchangeRate = "f390895452a9366a9eeff7c3"; // Reemplaza con tu propia clave de API
 const apiKeyNews = "fb98581019a54258bd249f25b15a0e62"; // Clave de API de NewsAPI
@@ -178,13 +191,13 @@ async function obtenerDatosDolar() {
     // --- INICIO DEL CAMBIO ---
     // Obtener la fecha y hora actual del dispositivo
     const fechaActualizacion = new Date();
-    
+
     // Formatear la fecha (DD/MM/YYYY)
     const dia = String(fechaActualizacion.getDate()).padStart(2, "0");
     const mes = String(fechaActualizacion.getMonth() + 1).padStart(2, "0");
     const anio = fechaActualizacion.getFullYear();
     const fechaFormateada = `${dia}/${mes}/${anio}`;
-    
+
     // Formatear la hora (HH:MM:SS)
     const hora = String(fechaActualizacion.getHours()).padStart(2, "0");
     const minutos = String(fechaActualizacion.getMinutes()).padStart(2, "0");
@@ -197,7 +210,6 @@ async function obtenerDatosDolar() {
          <strong>Promedio:</strong> ${data.promedio} Bs<br>
          <strong>Última actualización:<br>
          </strong> ${fechaFormateada} a las ${horaFormateada}`;
-         
   } catch (error) {
     // Mostrar mensaje de error si algo falla
     divResultado.innerHTML = `Error al cargar los datos: ${error.message}`;
@@ -389,8 +401,6 @@ async function obtenerFactorConversion() {
 // Ejecutar la función cuando cargue la página
 document.addEventListener("DOMContentLoaded", obtenerFactorConversion);
 
-
-
 // TODO: Factor-2 de conversion TRM/OFICIAL
 
 // Función asíncrona para obtener y calcular el factor
@@ -408,7 +418,7 @@ async function obtenerFactorConversion2() {
     // Nota: Asumimos que quieres convertir a Bolivares (VES).
     // Si necesitas otra moneda, cambia 'VES' por 'EUR', 'COP', etc.
     const valorOficialTrm = datos1.rates.COP;
-   
+
     // 2. Obtener promedio del dólar ofical
     const respuesta2 = await fetch(api2);
     const datos2 = await respuesta2.json();
@@ -416,7 +426,7 @@ async function obtenerFactorConversion2() {
     // La API devuelve un array, tomamos el promedio del primer elemento o buscamos el promedio
     // Generalmente el endpoint devuelve un array y el primero tiene el promedio.
     const valorOficialBcv = datos2.promedio;
-   
+
     // 3. Calcular Factor (Lógica: Valor Oficial_trm / Valor oficial_bcv)
     const factor2 = valorOficialTrm / valorOficialBcv;
     console.log(factor2);
@@ -433,7 +443,6 @@ async function obtenerFactorConversion2() {
 
 // Ejecutar la función cuando cargue la página
 document.addEventListener("DOMContentLoaded", obtenerFactorConversion2);
-
 
 // TODO: Conversion de Bolivares a Pesos COP
 // 1. Variable global para guardar el factor y usarlo en otras funciones
