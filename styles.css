@@ -37,6 +37,8 @@ body {
 header {
   background-color: #313647;
   /* Fondo oscuro */
+  /*background-color: #E2E8F0;*/
+  /* Fondo claro */
   padding: 0;
   /* Espaciado interno */
   display: flex;
@@ -64,9 +66,10 @@ header h1 {
 }
 
 .date-time {
+  width: 100%;
   display: flex;
   /* Elementos en línea */
-  /*justify-content: end;*/
+  justify-content: center;
   /* Centrado horizontal */
   align-items: center;
   gap: 12px;
@@ -118,8 +121,10 @@ header h1 {
   /* Sombra */
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
   /* Fondo claro por defecto */
-  background-color: #FFF8D4;
+  /* background-color: #FFF8D4; */
+  background-color: #E2E8F0;
   /* background: rgb(94, 240, 3); */
+  /* background-color: #F2E9E4; */
   /* border */
   /* border: 2px solid #ff0000; */
 }
