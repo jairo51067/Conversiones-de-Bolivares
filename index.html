@@ -104,10 +104,10 @@
 
         <!-- DOLAR BCV - EURO BCV -->
         <div class="container-valorDollar rounded-2">
+              <!--TODO: Dolar BCV-->
             <div class="alert alert-dark my-2;" role="alert">
                 <strong>Valor del Dolar BCV</strong>
             </div>
-            <!--TODO: Dolar BCV-->
             <div>
                 <div class="d-flex align-items-center mb-0">
                     <img style="margin-left: 7%;" src="src/assets/simbolo_del_dolar-sf.png" width="50px" height="50px"
@@ -119,18 +119,19 @@
                             web del BCV</a>
                     </div>
                 </div>
-                <div id="resultadoBcv" style="font-size: 18px; font-weight: 700; text-align: left;">Cargando datos...
+                <div id="resultadoBcv" style="font-size: 18px; font-weight: 700; text-align: center;">Cargando datos...
                 </div>
                 <br>
                 <button id="actualizar" type="button" class="btn btn-outline-success">Actualizar Datos <i
                         class="fas fa-sync-alt"></i>
                 </button>
             </div>
+            
+            <!--TODO: Euro BCV-->
             <hr>
             <div class="alert alert-dark my-2;" role="alert">
                 <strong>Valor del Euro BCV</strong>
             </div>
-            <!--TODO: Euro BCV-->
             <div>
                 <div class="d-flex align-items-center mb-0">
                     <img src="src/assets/euro-vector-icon-money_sf.png" width="90px" height="90px" alt="logo del euro">
@@ -141,7 +142,7 @@
                             web del BCV</a>
                     </div>
                 </div>
-                <div id="resultadoEuroOficial" style="font-size: 18px; font-weight: 700; text-align: left;">Cargando
+                <div id="resultadoEuroOficial" style="font-size: 18px; font-weight: 700; text-align: center;">Cargando
                     datos...
                 </div>
                 <br>
@@ -164,7 +165,7 @@
                     <h2 style="padding: 2%;">P2P Binance</h2>
                 </div>
 
-                <div id="resultadoParalelo" style="font-size: 18px; font-weight: 700; text-align: left;">Cargando
+                <div id="resultadoParalelo" style="font-size: 18px; font-weight: 700; text-align: center;">Cargando
                     datos...
                 </div>
                 <br>
@@ -177,7 +178,6 @@
             <div class="alert alert-dark my-2;" role="alert">
                 <strong>Tasa Representativa del Mercado (TRM).</strong>
             </div>
-
             <div class="d-flex align-items-center">
                 <img src="src/assets/colombia-symbol-colombian-peso-icon-cop_sf.png" width="90px" height="90px"
                     alt="Logo Valor del dolar">
@@ -193,19 +193,33 @@
         <!-- FACTOR DE CONVERSION - BOLIVARES A PESOS - PESOS A BOLIVARES -->
         <div class="container-factores rounded-2">
             <div class="p-3 text-dark shadow-lg p-3 mb-5 bg-body-tertiary rounded">
-                <!-- TODO: Valor del Factor de Conversion TRM/Dolar paralelo -->
+                <!-- TODO: Valor del Factores de Conversion -->
                 <div class="alert alert-danger d-flex align-items-center" role="alert">
                     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
                         <use xlink:href="#exclamation-triangle-fill" />
                     </svg>
                     <strong class="m-2">Factor de Conversión</strong>
                 </div>
+
+                <!-- **1** -->
                 <div class="bg-warning rounded border mb-1">
+                    <!-- TODO: Valor del Factor de Conversion TRM/Dolar paralelo -->
                     <h4 class="subtitulo">TRM/Dolar paralelo.</h4>
                     <div id="factor-value" class="h2 text-danger font-weight-bold text-center align-middle">Cargando...
                     </div>
                 </div>
+                
+                <!-- **2** -->
+                <div class="bg-info rounded border mb-1">
+                    <!-- TODO: Valor del Factor de Conversion TRM/Euro oficial  -->
+                    <h4 class="subtitulo">TRM/Euro oficial.</h4>
+                    <div id="factor-value-3" class="h2 text-dark font-weight-bold text-center align-middle">Cargando...
+                    </div>
+                </div>
+
+                <!-- **3** -->
                 <div class="bg-white rounded border">
+                    <!-- TODO: Valor del Factor de Conversion TRM/Dolar oficial -->
                     <h4 class="subtitulo">TRM/Dolar oficial.</h4>
                     <div id="factor-value-2" class="h2 text-primary font-weight-bold text-center align-middle">
                         Cargando...</div>

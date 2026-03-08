@@ -248,10 +248,27 @@ async function obtenerDatosEuroOficial() {
     // Mostrar en consola para depuración
     console.log("Datos del Euro Oficial:", data);
 
-    // Mostrar en el div (puedes personalizar el formato)
+    // --- INICIO DEL CAMBIO ---
+    // Obtener la fecha y hora actual del dispositivo
+    const fechaActualizacion = new Date();
+    
+    // Formatear la fecha (DD/MM/YYYY)
+    const dia = String(fechaActualizacion.getDate()).padStart(2, "0");
+    const mes = String(fechaActualizacion.getMonth() + 1).padStart(2, "0");
+    const anio = fechaActualizacion.getFullYear();
+    const fechaFormateada = `${dia}/${mes}/${anio}`;
+    
+    // Formatear la hora (HH:MM:SS)
+    const hora = String(fechaActualizacion.getHours()).padStart(2, "0");
+    const minutos = String(fechaActualizacion.getMinutes()).padStart(2, "0");
+    const segundos = String(fechaActualizacion.getSeconds()).padStart(2, "0");
+    const horaFormateada = `${hora}:${minutos}:${segundos}`;
+    // --- FIN DEL CAMBIO ---
+
+    // Mostrar en el div (con fecha y hora del dispositivo)
     divResultado.innerHTML = `
             <strong>Promedio:</strong> ${data.promedio} Bs<br>
-            <strong>Última actualización:</strong> ${data.fechaActualizacion.split("T")[0]}`;
+            <strong>Última actualización:</strong><br>${fechaFormateada} a las ${horaFormateada}`;
   } catch (error) {
     // Mostrar mensaje de error si algo falla
     divResultado.innerHTML = `Error al cargar los datos: ${error.message}`;
@@ -286,11 +303,28 @@ async function obtenerDatosDolarParalelo() {
     // Mostrar en consola para depuración
     console.log("Datos del Dólar Paralelo:", data);
 
-    // Mostrar en el div
+    // --- INICIO DEL CAMBIO ---
+    // Obtener la fecha y hora actual del dispositivo
+    const fechaActualizacion = new Date();
+    
+    // Formatear la fecha (DD/MM/YYYY)
+    const dia = String(fechaActualizacion.getDate()).padStart(2, "0");
+    const mes = String(fechaActualizacion.getMonth() + 1).padStart(2, "0");
+    const anio = fechaActualizacion.getFullYear();
+    const fechaFormateada = `${dia}/${mes}/${anio}`;
+    
+    // Formatear la hora (HH:MM:SS)
+    const hora = String(fechaActualizacion.getHours()).padStart(2, "0");
+    const minutos = String(fechaActualizacion.getMinutes()).padStart(2, "0");
+    const segundos = String(fechaActualizacion.getSeconds()).padStart(2, "0");
+    const horaFormateada = `${hora}:${minutos}:${segundos}`;
+    // --- FIN DEL CAMBIO ---
+
+    // Mostrar en el div (con fecha y hora del dispositivo)
     divResultado.innerHTML = `
           
             <strong>Promedio:</strong> ${data.promedio} Bs<br>
-            <strong>Última actualización:</strong> ${data.fechaActualizacion.split("T")[0]}`;
+            <strong>Última actualización:</strong><br>${fechaFormateada} a las ${horaFormateada}`;
   } catch (error) {
     divResultado.innerHTML = `Error al cargar los datos: ${error.message}`;
     console.error("Error en Dólar Paralelo:", error);
@@ -306,6 +340,7 @@ document
 window.addEventListener("load", () => {
   obtenerDatosDolarParalelo();
 });
+
 
 // TODO: Valor del dolar en pesos colombianos TRM
 // Función para obtener y mostrar el TRM del dólar en Colombia
@@ -332,17 +367,31 @@ async function obtenerTRMDolarColombia() {
     // Extraer el valor del TRM (USD a COP)
     const trm = data.rates.COP;
 
-    // Obtener la fecha de la API
-    const fechaActualizacion = data.date;
+    // --- INICIO DEL CAMBIO ---
+    // Obtener la fecha y hora actual del dispositivo
+    const fechaActualizacion = new Date();
+    
+    // Formatear la fecha (DD/MM/YYYY)
+    const dia = String(fechaActualizacion.getDate()).padStart(2, "0");
+    const mes = String(fechaActualizacion.getMonth() + 1).padStart(2, "0");
+    const anio = fechaActualizacion.getFullYear();
+    const fechaFormateada = `${dia}/${mes}/${anio}`;
+    
+    // Formatear la hora (HH:MM:SS)
+    const hora = String(fechaActualizacion.getHours()).padStart(2, "0");
+    const minutos = String(fechaActualizacion.getMinutes()).padStart(2, "0");
+    const segundos = String(fechaActualizacion.getSeconds()).padStart(2, "0");
+    const horaFormateada = `${hora}:${minutos}:${segundos}`;
+    // --- FIN DEL CAMBIO ---
 
     // Mostrar en consola para depuración
     console.log("Datos obtenidos de la API:", data);
     console.log("TRM (USD a COP):", trm);
 
-    // Mostrar en el div (formateado como TRM) + fecha
+    // Mostrar en el div (formateado como TRM) + fecha y hora del dispositivo
     divResultado.innerHTML = `
-            <p style="font-size: 24px; font-weight:700; text-align: left;">1 USD = ${trm.toLocaleString("es-CO", { style: "currency", currency: "COP" })}</p>
-            <p style="font-size: 18px; font-weight:700; text-align: left;">Última actualización: ${fechaActualizacion}</p>
+            <p style="font-size: 24px; font-weight:700; text-align: center;">1 USD = ${trm.toLocaleString("es-CO", { style: "currency", currency: "COP" })}</p>
+            <p style="font-size: 18px; font-weight:700; text-align: center;">Última actualización:<br>${fechaFormateada} a las ${horaFormateada}</p>
         `;
   } catch (error) {
     // Mostrar mensaje de error si algo falla
@@ -359,7 +408,7 @@ document
 // Llamar a la función automáticamente al cargar la página
 window.addEventListener("load", obtenerTRMDolarColombia);
 
-// TODO: Factor de conversion TRM/PARALELO
+// TODO: Factor-1 de conversion TRM/PARALELO
 // Función asíncrona para obtener y calcular el factor
 async function obtenerFactorConversion() {
   const api1 = "https://api.exchangerate-api.com/v4/latest/USD";
@@ -400,6 +449,62 @@ async function obtenerFactorConversion() {
 
 // Ejecutar la función cuando cargue la página
 document.addEventListener("DOMContentLoaded", obtenerFactorConversion);
+
+
+// TODO: Factor-3 de conversion TRM/EURO
+
+// Función asíncrona para obtener y calcular el factor (TRM COP / Euro Oficial VES)
+async function obtenerFactorConversion3() {
+  // 1. API para obtener la TRM (Base USD, obtenemos la tasa en COP)
+  const api1 = "https://api.exchangerate-api.com/v4/latest/USD";
+  
+  // 2. API para obtener el Euro Oficial en Venezuela (Base VES)
+  const api2 = "https://ve.dolarapi.com/v1/euros/oficial";
+
+  const elementoMostrar = document.getElementById("factor-value-3");
+
+  try {
+    // 1. Obtener TRM (Pesos Colombianos por 1 USD)
+    const respuesta1 = await fetch(api1);
+    const datos1 = await respuesta1.json();
+
+    // Extraemos el valor de COP de la respuesta (TRM)
+    const valorOficialTrm = datos1.rates.COP;
+
+    // 2. Obtener Euro Oficial (Bolívares por 1 EUR)
+    const respuesta2 = await fetch(api2);
+    const datos2 = await respuesta2.json();
+    console.log("Datos del Euro Oficial:", datos2);
+
+    // La API de Euros devuelve la propiedad "cotizacion" (a diferencia de "promedio" en dólares)
+    const valorOficialEuro = datos2.promedio;
+
+    // 3. Calcular Factor (Lógica: TRM (COP) / Euro Oficial (VES))
+    const factor3 = valorOficialTrm / valorOficialEuro;
+    console.log("TRM (COP):", valorOficialTrm);
+    console.log("Euro (VES):", valorOficialEuro);
+    console.log("Factor:", factor3);
+
+    // 4. Mostrar en pantalla (formateado a 4 decimales)
+    elementoMostrar.innerText = factor3.toFixed(4);
+    
+    // Opcional: Estilos visuales según el resultado
+    if (factor3>0) {
+        elementoMostrar.classList.remove("text-danger");
+        elementoMostrar.classList.add("text-primary");
+    }
+
+  } catch (error) {
+    console.error("Error al obtener datos:", error);
+    elementoMostrar.innerText = "Error";
+    elementoMostrar.classList.remove("text-primary");
+    elementoMostrar.classList.add("text-danger");
+  }
+}
+
+// Ejecutar la función cuando cargue la página
+document.addEventListener("DOMContentLoaded", obtenerFactorConversion3);
+
 
 // TODO: Factor-2 de conversion TRM/OFICIAL
 
@@ -443,6 +548,8 @@ async function obtenerFactorConversion2() {
 
 // Ejecutar la función cuando cargue la página
 document.addEventListener("DOMContentLoaded", obtenerFactorConversion2);
+
+
 
 // TODO: Conversion de Bolivares a Pesos COP
 // 1. Variable global para guardar el factor y usarlo en otras funciones
