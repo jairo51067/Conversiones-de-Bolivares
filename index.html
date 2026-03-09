@@ -46,8 +46,9 @@
     </header>
 
     <!-- TODO Fecha y Hora -->
-    <div class="d-flex justify-content-between contenedor-dataTime">
-        <div class="date-time">
+    <div
+        class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between contenedor-dataTime">
+        <div class="date-time text-center">
             <div id="current-date" class="text-black p-1" style="font-weight: 800; font-size: 16px;">Fecha: <span
                     id="date">date</span>
             </div>
@@ -55,55 +56,13 @@
                     id="time">time</span></div>
         </div>
         <!-- TODO Botón para mostrar el conversor -->
-        <div class="boton-convertidor">
-            <button id="show-converter" type="button" class="btn btn-outline-secondary">Ir a
-                Convertidor</button>
-        </div>
+        <!-- <div class="boton-convertidor w-100 mt-2 mt-md-0">
+            <button id="show-converter" type="button" class="btn btn-outline-secondary">Ir a Conversor con Tasas
+                Oficiales</button>
+        </div> -->
     </div>
 
     <main class="container">
-        <!-- CONVERSOR -->
-        <!-- TODO: Contenedor del conversor, inicialmente oculto -->
-        <div id="converter-container" style="display: block; width: 100%;">
-            <div class="container-conversor">
-                <h2>Convertidor</h2>
-                <div class="subtitulo">Convierte dolares, euros, pesos colombianos y bolivares.</div>
-                <form class="field-container" id="currency-form">
-                    <div class="form-group">
-                        <label for="amount">Cantidad a convertir:</label>
-                        <input type="number" id="amount" class="form-control"
-                            placeholder="Ingrese la cantidad a convertir..." required>
-                    </div>
-                    <div class="form-group">
-                        <label for="from">Moneda a convertir:</label>
-                        <select id="from" class="form-control"></select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="to">Moneda a obtener:</label>
-                        <select id="to" class="form-control"></select>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: auto; font-weight: 700;">Convertir <i
-                            class="fas fa-arrow-right"></i></button>
-                    <br>
-                    <button type="button" id="refresh" class="btn btn-secondary"
-                        style="width: auto; font-weight: 700;">Actualizar Tasas <i class="fas fa-sync-alt"></i></button>
-                </form>
-                <hr>
-                <div>
-                    <h3>Resultado</h3>
-                    <p id="result"></p>
-                </div>
-                <hr>
-                <div id="history">
-                    <h3>Historial de Conversiones</h3>
-                    <ul id="history-list"></ul>
-                </div>
-                <button id="close-converter" class="btn btn-danger" style="font-weight: 700;">Ocultar
-                    Convertidor</button>
-            </div>
-        </div>
-
         <!-- DOLAR BCV - EURO BCV -->
         <div class="container-valorDollar rounded-2">
             <!--TODO: Dolar BCV-->
@@ -206,7 +165,7 @@
                 <!-- **1** -->
                 <div class="bg-warning rounded border mb-1">
                     <!-- TODO: Valor del Factor de Conversion TRM/Dolar paralelo -->
-                    <h4 class="subtitulo">TRM/Dolar paralelo.</h4>
+                    <h4 class="subtitulo fw-bold">TRM/Dolar paralelo.</h4>
                     <div id="factor-value" class="h2 text-danger font-weight-bold text-center align-middle">Cargando...
                     </div>
                 </div>
@@ -214,16 +173,16 @@
                 <!-- **2** -->
                 <div class="bg-info rounded border mb-1">
                     <!-- TODO: Valor del Factor de Conversion TRM/Euro oficial  -->
-                    <h4 class="subtitulo">TRM/Euro oficial.</h4>
+                    <h4 class="subtitulo fw-bold">TRM/Euro oficial.</h4>
                     <div id="factor-value-3" class="h2 text-dark font-weight-bold text-center align-middle">Cargando...
                     </div>
                 </div>
 
                 <!-- **3** -->
-                <div class="bg-white rounded border">
+                <div class="bg-secondary rounded border">
                     <!-- TODO: Valor del Factor de Conversion TRM/Dolar oficial -->
-                    <h4 class="subtitulo">TRM/Dolar oficial.</h4>
-                    <div id="factor-value-2" class="h2 text-primary font-weight-bold text-center align-middle">
+                    <h4 class="subtitulo fw-bold">TRM/Dolar oficial.</h4>
+                    <div id="factor-value-2" class="h2 text-light font-weight-bold text-center align-middle">
                         Cargando...</div>
                 </div>
             </div>
@@ -231,10 +190,60 @@
 
         <div class="container-factores rounded-2">
             <!-- TODO Botón para mostrar el conversor -->
+            <div class="boton-convertidor w-100 mt-2 mt-md-0">
+                <button id="show-converter" type="button" class="btn btn-secondary fw-bold">Ir a Conversor con Tasas
+                    Oficiales</button>
+            </div>
+            <!-- TODO Botón para mostrar el conversor -->
             <div class="boton-convertidor">
-                <button id="show-converter-paralelo" type="button" class="btn btn-warning fw-bold">Ir a Convertir a Paralelo </button>
+                <button id="show-converter-paralelo" type="button" class="btn btn-warning fw-bold">Ir a Conversor con
+                    Tasas Paralelo </button>
+            </div>
+
+        </div>
+
+        <!-- CONVERSOR -->
+        <!-- TODO: Contenedor del conversor, inicialmente oculto -->
+        <div id="converter-container" style="display: block; width: 100%;">
+            <div class="container-conversor">
+                <h2>Conversor con Tasas Oficiales</h2>
+                <div class="subtitulo">Convierte dolares, euros, pesos colombianos y bolivares.</div>
+                <form class="field-container" id="currency-form">
+                    <div class="form-group">
+                        <label for="amount">Cantidad a convertir:</label>
+                        <input type="number" id="amount" class="form-control"
+                            placeholder="Ingrese la cantidad a convertir..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="from">Moneda a convertir:</label>
+                        <select id="from" class="form-control"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="to">Moneda a obtener:</label>
+                        <select id="to" class="form-control"></select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: auto; font-weight: 700;">Convertir <i
+                            class="fas fa-arrow-right"></i></button>
+                    <br>
+                    <button type="button" id="refresh" class="btn btn-secondary"
+                        style="width: auto; font-weight: 700;">Actualizar Tasas <i class="fas fa-sync-alt"></i></button>
+                </form>
+                <hr>
+                <div>
+                    <h3>Resultado</h3>
+                    <p id="result"></p>
+                </div>
+                <hr>
+                <div id="history">
+                    <h3>Historial de Conversiones</h3>
+                    <ul id="history-list"></ul>
+                </div>
+                <button id="close-converter" class="btn btn-danger" style="font-weight: 700;">Ocultar
+                    Conversor con Tasas Oficiales</button>
             </div>
         </div>
+
 
         <!--TODO: Bolivares a Pesos COP-->
         <div id="convertir-a-paralelo" class="container-factores rounded-2">
@@ -243,7 +252,7 @@
                     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                         <use xlink:href="#check-circle-fill" />
                     </svg>
-                    <strong class="m-2">Convertir a paralelo:<br>Bolívares a Pesos (COP)</strong>
+                    <strong class="m-2">Conversor con Tasas Paralelo:<br>Bolívares a Pesos (COP)</strong>
                 </div>
                 <div class="form-group">
                     <label for="input-bolivares" class="font-weight-bold">Ingrese la cantidad en Bolívares
@@ -267,7 +276,7 @@
                     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                         <use xlink:href="#check-circle-fill" />
                     </svg>
-                    <strong>Convertir a paralelo:<br>Pesos a Bolivares (VES)</strong>
+                    <strong>Conversor con Tasas Paralelo:<br>Pesos a Bolivares (VES)</strong>
                 </div>
                 <div class="form-group">
                     <label for="input-pesos" class="font-weight-bold">Ingrese la cantidad en Pesos
@@ -281,8 +290,8 @@
                     </div>
                 </div>
             </div>
-             <button id="close-converter-paralelo" class="btn btn-danger" style="font-weight: 700;">Ocultar
-                    Convertir a Paralelo</button>
+            <button id="close-converter-paralelo" class="btn btn-danger" style="font-weight: 700;">Ocultar
+                Conversor con Tasas Paralelo</button>
         </div>
     </main>
 
