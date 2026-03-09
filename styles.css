@@ -31,6 +31,8 @@ body {
   /* Centrado */
   line-height: 1.5;
   /* Mejora la legibilidad */
+  margin-left: 25%;
+  margin-right: 25%;  
 }
 
 
@@ -84,7 +86,7 @@ header h1 {
 }
 
 .container {
-  display: flex;
+  /* display: flex; */
   /* Elementos en línea */
   flex-wrap: nowrap;
   /* Asegura que los elementos se envuelvan */
@@ -486,6 +488,10 @@ th {
     /* Sin margen */
   }
 
+  body{
+    margin: 0 auto;
+  }
+
 }
 
 /* Media query para pantallas de 500px o menos */
@@ -493,6 +499,10 @@ th {
   html {
     font-size: calc(var(--font-size-base) * 0.8);
     /* Ajuste de tamaño de fuente */
+  }
+
+  body{
+    margin: 0 auto;
   }
 
 }
