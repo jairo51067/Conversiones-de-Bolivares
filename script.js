@@ -1,4 +1,4 @@
-// Saludo de bienvenida
+// TODO: Saludo de bienvenida
 function mostrarSaludo() {
   const saludo = "¡Bienvenido al Conversor de Monedas!";
 
@@ -7,7 +7,6 @@ function mostrarSaludo() {
 
   // Opción B: Mensaje estándar (Gris, igual al alert original)
   // alertify.alert(saludo);
-  
 }
 mostrarSaludo();
 
@@ -146,25 +145,50 @@ function addToHistory(amount, fromCurrency, convertedAmount, toCurrency) {
   historyList.appendChild(historyItem);
 }
 
-// Mostrar el conversor al cargar la página
+/*window.onload siempre se debe escribir exactamente así, ya que es una propiedad nativa de JavaScript. 
+Sin embargo, solo puedes asignar una función a window.onload. Si defines varias, la última sobrescribirá a las anteriores. 
+Para ejecutar múltiples funciones al cargar, lo ideal es usar window.addEventListener('load', ...).*/
+// TODO: Mostrar el conversor al cargar la página
 window.onload = function () {
   document.getElementById("converter-container").style.display = "none";
 };
 
-// Lógica para mostrar el conversor (no se usará después de cerrarlo)
+// TODO: Lógica para mostrar el conversor (no se usará después de cerrarlo)
 document
   .getElementById("show-converter")
   .addEventListener("click", function () {
     document.getElementById("converter-container").style.display = "block";
   });
 
-// Lógica para ocultar el conversor
+// TODO: Lógica para ocultar el conversor
 document
   .getElementById("close-converter")
   .addEventListener("click", function () {
     document.getElementById("converter-container").style.display = "none";
   });
 
+/*La mejor alternativa: Usa window.addEventListener('load', func1); varias veces. Todas se ejecutarán en orden.*/
+// TODO: Ocultar-Mostrar el conversor-a-paralelo al cargar la pagina
+window.addEventListener("load", function () {
+  document.getElementById("convertir-a-paralelo").style.display = "none";
+});
+
+// TODO: Lógica para mostrar el conversor paralelo
+document
+  .getElementById("show-converter-paralelo")
+  .addEventListener("click", function () {
+    document.getElementById("convertir-a-paralelo").style.display = "block";
+  });
+
+// TODO: Lógica para ocultar el conversor paralelo
+document
+  .getElementById("close-converter-paralelo")
+  .addEventListener("click", function () {
+    document.getElementById("convertir-a-paralelo").style.display = "none";
+  });
+
+
+  
 // TODO: Valor de Dolar BCV
 // Función para obtener y mostrar los datos del dólar oficial
 async function obtenerDatosDolar() {
@@ -251,13 +275,13 @@ async function obtenerDatosEuroOficial() {
     // --- INICIO DEL CAMBIO ---
     // Obtener la fecha y hora actual del dispositivo
     const fechaActualizacion = new Date();
-    
+
     // Formatear la fecha (DD/MM/YYYY)
     const dia = String(fechaActualizacion.getDate()).padStart(2, "0");
     const mes = String(fechaActualizacion.getMonth() + 1).padStart(2, "0");
     const anio = fechaActualizacion.getFullYear();
     const fechaFormateada = `${dia}/${mes}/${anio}`;
-    
+
     // Formatear la hora (HH:MM:SS)
     const hora = String(fechaActualizacion.getHours()).padStart(2, "0");
     const minutos = String(fechaActualizacion.getMinutes()).padStart(2, "0");
@@ -306,13 +330,13 @@ async function obtenerDatosDolarParalelo() {
     // --- INICIO DEL CAMBIO ---
     // Obtener la fecha y hora actual del dispositivo
     const fechaActualizacion = new Date();
-    
+
     // Formatear la fecha (DD/MM/YYYY)
     const dia = String(fechaActualizacion.getDate()).padStart(2, "0");
     const mes = String(fechaActualizacion.getMonth() + 1).padStart(2, "0");
     const anio = fechaActualizacion.getFullYear();
     const fechaFormateada = `${dia}/${mes}/${anio}`;
-    
+
     // Formatear la hora (HH:MM:SS)
     const hora = String(fechaActualizacion.getHours()).padStart(2, "0");
     const minutos = String(fechaActualizacion.getMinutes()).padStart(2, "0");
@@ -340,7 +364,6 @@ document
 window.addEventListener("load", () => {
   obtenerDatosDolarParalelo();
 });
-
 
 // TODO: Valor del dolar en pesos colombianos TRM
 // Función para obtener y mostrar el TRM del dólar en Colombia
@@ -370,13 +393,13 @@ async function obtenerTRMDolarColombia() {
     // --- INICIO DEL CAMBIO ---
     // Obtener la fecha y hora actual del dispositivo
     const fechaActualizacion = new Date();
-    
+
     // Formatear la fecha (DD/MM/YYYY)
     const dia = String(fechaActualizacion.getDate()).padStart(2, "0");
     const mes = String(fechaActualizacion.getMonth() + 1).padStart(2, "0");
     const anio = fechaActualizacion.getFullYear();
     const fechaFormateada = `${dia}/${mes}/${anio}`;
-    
+
     // Formatear la hora (HH:MM:SS)
     const hora = String(fechaActualizacion.getHours()).padStart(2, "0");
     const minutos = String(fechaActualizacion.getMinutes()).padStart(2, "0");
@@ -450,14 +473,13 @@ async function obtenerFactorConversion() {
 // Ejecutar la función cuando cargue la página
 document.addEventListener("DOMContentLoaded", obtenerFactorConversion);
 
-
 // TODO: Factor-3 de conversion TRM/EURO
 
 // Función asíncrona para obtener y calcular el factor (TRM COP / Euro Oficial VES)
 async function obtenerFactorConversion3() {
   // 1. API para obtener la TRM (Base USD, obtenemos la tasa en COP)
   const api1 = "https://api.exchangerate-api.com/v4/latest/USD";
-  
+
   // 2. API para obtener el Euro Oficial en Venezuela (Base VES)
   const api2 = "https://ve.dolarapi.com/v1/euros/oficial";
 
@@ -487,13 +509,12 @@ async function obtenerFactorConversion3() {
 
     // 4. Mostrar en pantalla (formateado a 4 decimales)
     elementoMostrar.innerText = factor3.toFixed(4);
-    
-    // Opcional: Estilos visuales según el resultado
-    if (factor3>0) {
-        elementoMostrar.classList.remove("text-danger");
-        elementoMostrar.classList.add("text-primary");
-    }
 
+    // Opcional: Estilos visuales según el resultado
+    if (factor3 > 0) {
+      elementoMostrar.classList.remove("text-danger");
+      elementoMostrar.classList.add("text-primary");
+    }
   } catch (error) {
     console.error("Error al obtener datos:", error);
     elementoMostrar.innerText = "Error";
@@ -504,7 +525,6 @@ async function obtenerFactorConversion3() {
 
 // Ejecutar la función cuando cargue la página
 document.addEventListener("DOMContentLoaded", obtenerFactorConversion3);
-
 
 // TODO: Factor-2 de conversion TRM/OFICIAL
 
@@ -548,8 +568,6 @@ async function obtenerFactorConversion2() {
 
 // Ejecutar la función cuando cargue la página
 document.addEventListener("DOMContentLoaded", obtenerFactorConversion2);
-
-
 
 // TODO: Conversion de Bolivares a Pesos COP
 // 1. Variable global para guardar el factor y usarlo en otras funciones
