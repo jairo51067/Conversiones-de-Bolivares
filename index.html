@@ -162,15 +162,15 @@
                     <strong class="m-2">Factores de Conversión</strong>
                 </div>
 
-                <!-- **1** -->
-                <div class="bg-warning rounded border mb-1">
-                    <!-- TODO: Valor del Factor de Conversion TRM/Dolar paralelo -->
-                    <h4 class="subtitulo fw-bold">TRM/Dolar paralelo.</h4>
-                    <div id="factor-value" class="h2 text-danger font-weight-bold text-center align-middle">Cargando...
-                    </div>
+                 <!-- **3** -->
+                <div class="bg-secondary rounded border">
+                    <!-- TODO: Valor del Factor de Conversion TRM/Dolar oficial -->
+                    <h4 class="subtitulo fw-bold">TRM/Dolar oficial.</h4>
+                    <div id="factor-value-2" class="h2 text-light font-weight-bold text-center align-middle">
+                        Cargando...</div>
                 </div>
 
-                <!-- **2** -->
+                 <!-- **2** -->
                 <div class="bg-info rounded border mb-1">
                     <!-- TODO: Valor del Factor de Conversion TRM/Euro oficial  -->
                     <h4 class="subtitulo fw-bold">TRM/Euro oficial.</h4>
@@ -178,16 +178,17 @@
                     </div>
                 </div>
 
-                <!-- **3** -->
-                <div class="bg-secondary rounded border">
-                    <!-- TODO: Valor del Factor de Conversion TRM/Dolar oficial -->
-                    <h4 class="subtitulo fw-bold">TRM/Dolar oficial.</h4>
-                    <div id="factor-value-2" class="h2 text-light font-weight-bold text-center align-middle">
-                        Cargando...</div>
-                </div>
+                <!-- **1** -->
+                <div class="bg-warning rounded border mb-1">
+                    <!-- TODO: Valor del Factor de Conversion TRM/Dolar paralelo -->
+                    <h4 class="subtitulo fw-bold">TRM/Dolar paralelo.</h4>
+                    <div id="factor-value" class="h2 text-danger font-weight-bold text-center align-middle">Cargando...
+                    </div>
+                </div>               
             </div>
         </div>
 
+        <!-- Botones para mostrar conversores -->
         <div class="container-factores rounded-2">
             <!-- TODO Botón para mostrar el conversor -->
             <div class="boton-convertidor w-100 mt-2 mt-md-0">
@@ -202,7 +203,7 @@
 
         </div>
 
-        <!-- CONVERSOR -->
+        <!-- CONVERSOR CON TASAS OFICIALES -->
         <!-- TODO: Contenedor del conversor, inicialmente oculto -->
         <div id="converter-container" style="display: block; width: 100%;">
             <div class="container-conversor">
@@ -259,6 +260,7 @@
                         (VES):</label>
                     <input class="h4" type="number" id="input-bolivares" placeholder="Ej: 1500"
                         oninput="convertirACop()">
+                     <span>Bolivares multiplicados por el factor de conversión paralelo</span>
                 </div>
 
                 <div class="bg-light rounded border p-2">
@@ -270,6 +272,7 @@
             </div>
 
             <hr>
+            
             <!--TODO: Pesos COP a Bolivares-->
             <div class="p-3 mb-2 bg-primary bg-gradient text-dark shadow p-3 mb-5 bg-body-tertiary rounded">
                 <div class="alert alert-primary d-flex align-items-center" role="alert">
@@ -282,6 +285,7 @@
                     <label for="input-pesos" class="font-weight-bold">Ingrese la cantidad en Pesos
                         (COP):</label>
                     <input class="h4" type="number" id="input-pesos" placeholder="Ej: 1500" oninput="convertirABs()">
+                    <span>Pesos divididos entre el factor de conversión paralelo</span>
                 </div>
                 <div class="bg-light rounded border p-2">
                     <h5 class="text-secondary">Recibes:</h5>
