@@ -1,6 +1,6 @@
 // TODO: Saludo de bienvenida
 function mostrarSaludo() {
-  const saludo = "¡Bienvenido al Conversor de Monedas!";
+  const saludo = "¡Bienvenido a: <br> Tu Conversor de Monedas!";
 
   // Opción A: Mensaje de éxito (Verde, más amigable)
   alertify.success(saludo);
@@ -188,7 +188,7 @@ document
   });
 
 
-  
+
 // TODO: Valor de Dolar BCV
 // Función para obtener y mostrar los datos del dólar oficial
 async function obtenerDatosDolar() {
