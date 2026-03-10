@@ -230,10 +230,12 @@ async function obtenerDatosDolar() {
     // --- FIN DEL CAMBIO ---
 
     // Mostrar los datos en el div (con fecha y hora del dispositivo)
-    divResultado.innerHTML = `
-         <strong>Promedio:</strong> ${data.promedio} Bs<br>
-         <strong>Última actualización:<br>
-         </strong> ${fechaFormateada} a las ${horaFormateada}`;
+   divResultado.innerHTML = `
+     <strong class="titulo-valor">1 USD =</strong> 
+     <span class="valor">${data.promedio.toFixed(2)} Bs</span><br>
+     <strong class="titulo-actualizacion">Última actualización:<br>
+     </strong> 
+     <span class="fecha-hora">${fechaFormateada} a las ${horaFormateada}</span>`;
   } catch (error) {
     // Mostrar mensaje de error si algo falla
     divResultado.innerHTML = `Error al cargar los datos: ${error.message}`;
@@ -291,8 +293,8 @@ async function obtenerDatosEuroOficial() {
 
     // Mostrar en el div (con fecha y hora del dispositivo)
     divResultado.innerHTML = `
-            <strong>Promedio:</strong> ${data.promedio} Bs<br>
-            <strong>Última actualización:</strong><br>${fechaFormateada} a las ${horaFormateada}`;
+            <strong class="titulo-valor">1 USD = </strong> <span class="valor">${data.promedio.toFixed(2)} Bs</span><br>
+            <strong class="titulo-actualizacion">Última actualización:</strong><br><span class="fecha-hora">${fechaFormateada} a las ${horaFormateada}</span>`;
   } catch (error) {
     // Mostrar mensaje de error si algo falla
     divResultado.innerHTML = `Error al cargar los datos: ${error.message}`;
@@ -346,9 +348,8 @@ async function obtenerDatosDolarParalelo() {
 
     // Mostrar en el div (con fecha y hora del dispositivo)
     divResultado.innerHTML = `
-          
-            <strong>Promedio:</strong> ${data.promedio} Bs<br>
-            <strong>Última actualización:</strong><br>${fechaFormateada} a las ${horaFormateada}`;
+            <strong class="titulo-valor">1 USDT = </strong> <span class="valor">${data.promedio.toFixed(2)} Bs</span><br>
+            <strong class="titulo-actualizacion">Última actualización:</strong><br><span class="fecha-hora">${fechaFormateada} a las ${horaFormateada}</span>`;
   } catch (error) {
     divResultado.innerHTML = `Error al cargar los datos: ${error.message}`;
     console.error("Error en Dólar Paralelo:", error);
@@ -412,10 +413,15 @@ async function obtenerTRMDolarColombia() {
     console.log("TRM (USD a COP):", trm);
 
     // Mostrar en el div (formateado como TRM) + fecha y hora del dispositivo
-    divResultado.innerHTML = `
-            <p style="font-size: 24px; font-weight:700; text-align: center;">1 USD = ${trm.toLocaleString("es-CO", { style: "currency", currency: "COP" })}</p>
-            <p style="font-size: 18px; font-weight:700; text-align: center;">Última actualización:<br>${fechaFormateada} a las ${horaFormateada}</p>
-        `;
+   divResultado.innerHTML = `
+    <p class="titulo-valor">
+        1 USD = <span class="valor-moneda">${trm.toLocaleString("es-CO", { style: "currency", currency: "COP" })}</span>
+    </p>
+    <p class="titulo-actualizacion">
+        Última actualización:<br>
+        <span class="fecha-hora">${fechaFormateada} a las ${horaFormateada}</span>
+    </p>
+`;
   } catch (error) {
     // Mostrar mensaje de error si algo falla
     divResultado.innerHTML = `Error al cargar el TRM: ${error.message}`;
