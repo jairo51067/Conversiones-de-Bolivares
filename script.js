@@ -232,7 +232,7 @@ async function obtenerDatosDolar() {
     // Mostrar los datos en el div (con fecha y hora del dispositivo)
    divResultado.innerHTML = `
      <strong class="titulo-valor">1 USD =</strong> 
-     <span class="valor">${data.promedio.toFixed(2)} Bs</span><br>
+     <span class="valor-moneda">${data.promedio.toFixed(2)} Bs</span><br>
      <strong class="titulo-actualizacion">Última actualización:<br>
      </strong> 
      <span class="fecha-hora">${fechaFormateada} a las ${horaFormateada}</span>`;
@@ -293,7 +293,7 @@ async function obtenerDatosEuroOficial() {
 
     // Mostrar en el div (con fecha y hora del dispositivo)
     divResultado.innerHTML = `
-            <strong class="titulo-valor">1 USD = </strong> <span class="valor">${data.promedio.toFixed(2)} Bs</span><br>
+            <strong class="titulo-valor">1 USD = </strong> <span class="valor-moneda">${data.promedio.toFixed(2)} Bs</span><br>
             <strong class="titulo-actualizacion">Última actualización:</strong><br><span class="fecha-hora">${fechaFormateada} a las ${horaFormateada}</span>`;
   } catch (error) {
     // Mostrar mensaje de error si algo falla
@@ -348,7 +348,7 @@ async function obtenerDatosDolarParalelo() {
 
     // Mostrar en el div (con fecha y hora del dispositivo)
     divResultado.innerHTML = `
-            <strong class="titulo-valor">1 USDT = </strong> <span class="valor">${data.promedio.toFixed(2)} Bs</span><br>
+            <strong class="titulo-valor">1 USDT = </strong> <span class="valor-moneda">${data.promedio.toFixed(2)} Bs</span><br>
             <strong class="titulo-actualizacion">Última actualización:</strong><br><span class="fecha-hora">${fechaFormateada} a las ${horaFormateada}</span>`;
   } catch (error) {
     divResultado.innerHTML = `Error al cargar los datos: ${error.message}`;
