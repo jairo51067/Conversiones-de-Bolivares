@@ -12,7 +12,6 @@ const refreshButton = document.getElementById("refresh");
 
 // Almacenar tasas de cambio anteriores
 const previousRates = {};
-
 // Carga inicial de datos
 document.addEventListener("DOMContentLoaded", async () => {
   await loadCurrencies(); // Cargar las monedas al inicio
