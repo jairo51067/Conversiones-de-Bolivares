@@ -1,0 +1,53 @@
+ /* Estilos CSS para el efecto de vidrio */
+  .glass-modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+  }
+
+  .glass-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .glass-content {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px); /* El efecto borroso */
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+  }
+
+  .glass-modal.active .glass-content {
+    transform: scale(1);
+  }
+
+  .glass-content button {
+    margin-top: 20px;
+    padding: 10px 25px;
+    border: none;
+    background: #fff;
+    color: #333;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s;
+  }
+  
+  .glass-content button:hover {
+    transform: scale(1.05);
+  }
+

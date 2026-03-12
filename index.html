@@ -8,11 +8,15 @@
     <link rel="shortcut icon" href="src/assets/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- CSS aplicacion -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles_modal_saludo.css">
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Iconos -->
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
             <path
@@ -30,6 +34,14 @@
     <!-- CSS de Alertify -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <!-- Swetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- CSS de Toastify (en el <head>) -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+
+
+
     <title>Conversiones de Bolivares</title>
 </head>
 
@@ -46,38 +58,46 @@
     </header>
 
     <!-- TODO Fecha y Hora -->
-   <div class="card shadow-sm border-0 rounded-1 p-3 mb-1" style="max-width: 1020px;">
-    <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
-        <!-- Sección de Fecha y Hora -->
-        <div class="d-flex flex-column align-items-center align-items-md-start text-center text-md-start">           
-            <!-- Fecha -->
-            <div class="d-flex align-items-center mb-1">
-                <!-- Icono opcional si tienes Bootstrap Icons cargado -->
-                <i class="bi bi-calendar3 text-secondary me-2"></i> 
-                <span class="text-uppercase text-secondary small fw-bold">Fecha</span>
+    <div class="card shadow-sm border-0 rounded-1 p-3 mb-1 bg-dark" style="max-width: 1020px;">
+        <div class="d-flex flex-column flex-md-row justify-content-between">
+            <!-- Sección de Fecha y Hora -->
+            <div class="d-flex flex-column align-items-start text-start align-items-md-start text-md-start">
+                <!-- Fecha -->
+                <div class="d-flex align-items-center mb-1">
+                    <i class="bi bi-calendar3 text-secondary me-2"></i>
+                    <span class="text-uppercase text-warning fw-bold fs-2">HOY</span>
+                </div>
+                <div id="current-date" class="text-white fw-bold fs-6">
+                    <span id="date">Cargando fecha...</span>
+                </div>
+                <!-- Hora -->
+                <!-- <div class="d-flex align-items-center mt-2 mt-md-0">
+                    <i class="bi bi-clock text-primary me-2"></i>
+                    <span class="text-uppercase text-warning fw-bold">Hora</span>
+                </div> -->
+                <div id="current-time" class="text-white fw-bold display-6">
+                    <span id="time">00:00</span>
+                </div>
             </div>
-            <div id="current-date" class="text-dark fw-bold fs-6">
-                <span id="date">Cargando fecha...</span>
-            </div>
-            <!-- Hora -->
-            <div class="d-flex align-items-center mt-2 mt-md-0">
-                <i class="bi bi-clock text-primary me-2"></i>
-                <span class="text-uppercase text-secondary small fw-bold">Hora</span>
-            </div>
-            <div id="current-time" class="text-dark fw-bold display-6">
-                <span id="time">00:00</span>
-            </div>
-        </div>
-        <!-- Botón (Opcional) -->
-        <!-- <div class="mt-3 mt-md-0">
+            <!-- Botón (Opcional) -->
+            <!-- <div class="mt-3 mt-md-0">
             <button id="show-converter" type="button" class="btn btn-outline-primary rounded-pill px-4">
                 <i class="bi bi-calculator me-1"></i> Conversor
             </button>
         </div> -->
+        </div>
     </div>
-</div>
 
-    <main class="container">
+    <!--Modal de saludo  -->
+    <div id="modalSaludo" class="glass-modal">
+        <div class="glass-content">
+            <h2>👋 ¡Hola!</h2>
+            <p>¡Bienvenido a:<br><strong>Tu Conversor de Monedas!</strong></p>
+            <button onclick="cerrarSaludo()">¡Genial!</button>
+        </div>
+    </div>
+
+    <main class="container mt-2 mb-2">
         <!-- DOLAR BCV - EURO BCV -->
         <div class="container-valorDollar rounded-2">
             <!--TODO: Dolar BCV-->
@@ -180,7 +200,7 @@
                     <strong class="m-2">Factores de Conversión</strong>
                 </div>
 
-                 <!-- **3** -->
+                <!-- **3** -->
                 <div class="bg-secondary rounded border">
                     <!-- TODO: Valor del Factor de Conversion TRM/Dolar oficial -->
                     <h4 class="subtitulo fw-bold">TRM/Dolar oficial.</h4>
@@ -188,7 +208,7 @@
                         Cargando...</div>
                 </div>
 
-                 <!-- **2** -->
+                <!-- **2** -->
                 <div class="bg-info rounded border mb-1">
                     <!-- TODO: Valor del Factor de Conversion TRM/Euro oficial  -->
                     <h4 class="subtitulo fw-bold">TRM/Euro oficial.</h4>
@@ -202,7 +222,7 @@
                     <h4 class="subtitulo fw-bold">TRM/Dolar paralelo.</h4>
                     <div id="factor-value" class="h2 text-danger font-weight-bold text-center align-middle">Cargando...
                     </div>
-                </div>               
+                </div>
             </div>
         </div>
 
@@ -279,7 +299,7 @@
                         (VES):</label>
                     <input class="h4" type="number" id="input-bolivares" placeholder="Ej: 1500"
                         oninput="convertirACop()">
-                     <span>Bolivares multiplicados por el factor de conversión paralelo</span>
+                    <span>Bolivares multiplicados por el factor de conversión paralelo</span>
                 </div>
 
                 <div class="bg-light rounded border p-2">
@@ -318,7 +338,7 @@
         </div>
     </main>
 
-    <footer class="text-right p-3">
+    <footer class="text-white p-3 mt-2 bg-dark rounded-2">
         <p>©2026 Convertir Bolivares - Dolares - Pesos. - Todos los derechos reservados.</p>
         <h5>Author: Jairo Cárdenas<br>
             <!-- <a href="mailto:jairo.cardenas.dev@gmail.com">jairo.cardenas.dev@gmail.com</a> -->
@@ -334,6 +354,11 @@
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <!-- JS de la aplicación -->
     <script src="script.js"></script>
+    <script src="script_saludar.js"></script>
+    <!-- 2. Librería de Toastify (al final del <body>) -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
 
 </body>
 

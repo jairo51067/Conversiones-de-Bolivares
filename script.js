@@ -1,15 +1,3 @@
-// TODO: Saludo de bienvenida
-function mostrarSaludo() {
-  const saludo = "¡Bienvenido a: <br> Tu Conversor de Monedas!";
-
-  // Opción A: Mensaje de éxito (Verde, más amigable)
-  alertify.success(saludo);
-
-  // Opción B: Mensaje estándar (Gris, igual al alert original)
-  // alertify.alert(saludo);
-}
-mostrarSaludo();
-
 // TODO: Claves de API
 const apiKeyExchangeRate = "f390895452a9366a9eeff7c3"; // Reemplaza con tu propia clave de API
 const apiKeyNews = "fb98581019a54258bd249f25b15a0e62"; // Clave de API de NewsAPI
