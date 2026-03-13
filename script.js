@@ -174,8 +174,6 @@ document
     document.getElementById("convertir-a-paralelo").style.display = "none";
   });
 
-
-
 // TODO: Valor de Dolar BCV
 // Función para obtener y mostrar los datos del dólar oficial
 async function obtenerDatosDolar() {
@@ -217,7 +215,7 @@ async function obtenerDatosDolar() {
     // --- FIN DEL CAMBIO ---
 
     // Mostrar los datos en el div (con fecha y hora del dispositivo)
-   divResultado.innerHTML = `
+    divResultado.innerHTML = `
      <strong class="titulo-valor">1 USD =</strong> 
      <span class="valor-moneda">${data.promedio.toFixed(2)} Bs</span><br>
      <strong class="titulo-actualizacion">Última actualización:<br>
@@ -400,7 +398,7 @@ async function obtenerTRMDolarColombia() {
     console.log("TRM (USD a COP):", trm);
 
     // Mostrar en el div (formateado como TRM) + fecha y hora del dispositivo
-   divResultado.innerHTML = `
+    divResultado.innerHTML = `
     <p class="titulo-valor">
         1 USD = <span class="valor-moneda">${trm.toLocaleString("es-CO", { style: "currency", currency: "COP" })}</span>
     </p>
@@ -713,9 +711,10 @@ document.addEventListener("DOMContentLoaded", () => {
 function updateDateTime() {
   const now = new Date();
   const date = now.toLocaleDateString("es-ES", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+    weekday: "long", // día de la semana
+    year: "numeric", // año
+    month: "long", // mes
+    day: "numeric", // día
   });
   const time = now.toLocaleTimeString("es-ES", {
     hour: "2-digit",

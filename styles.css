@@ -81,6 +81,10 @@ header h1 {
   margin: 2%;
 }
 
+#current-date::first-letter {
+  text-transform: uppercase;
+}
+
 .boton-convertidor {
   padding: 3%;
 }
