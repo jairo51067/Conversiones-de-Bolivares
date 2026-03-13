@@ -13,7 +13,7 @@
   box-sizing: border-box;
 }
 
-.paleta{
+.paleta {
   display: none;
 }
 
@@ -32,7 +32,7 @@ body {
   line-height: 1.5;
   /* Mejora la legibilidad */
   margin-left: 25%;
-  margin-right: 25%;  
+  margin-right: 25%;
 }
 
 
@@ -60,9 +60,12 @@ header h1 {
   /* Negrita para el título */
 }
 
+hr {
+  border-color: white;
+}
 
 /* Contenedores */
-.contenedor-dataTime{
+.contenedor-dataTime {
   /* background-color: #A3B087; */
   background-color: white;
 }
@@ -96,13 +99,13 @@ header h1 {
   /* Asegura que los elementos se envuelvan */
   justify-content: center;
   /* Centrado horizontal */
-  gap: 12px;
+  gap: 0px;
   /* Espaciado entre elementos */
   /* margin-top: 1rem; */
   /* Espaciado superior */
   /* margin-bottom: 1rem; */
   /* Espaciado inferior */
-  padding: 2rem;
+  padding: 1rem;
   /* Espaciado interno */
   /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
   /* background-color: #A3B087; */
@@ -123,12 +126,12 @@ header h1 {
   /* Espaciado proporcional */
   margin: 0 auto;
   /* Espaciado interno proporcional */
-  padding: 5%;
+  padding: 3%;
   /* Sombra */
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
   /* Fondo claro por defecto */
   /* background-color: #FFF8D4; */
-  background-color: #E2E8F0;
+  /* background-color: #E2E8F0; */
   /* background: rgb(94, 240, 3); */
   /* background-color: #F2E9E4; */
   /* border */
@@ -138,28 +141,29 @@ header h1 {
 
 
 .titulo-valor {
-    font-size: 24px;
-    font-weight: 700;
-    text-align: center;
-    color: #2c3e50;
-    /* margin-bottom: 10px; */
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  /* color: #2c3e50; */
+  color: white;
+  /* margin-bottom: 10px; */
 }
 
 .valor-moneda {
-    color: #27ae60;
-    font-weight: bold;
+  color: #27ae60;
+  font-weight: bold;
 }
 
 .titulo-actualizacion {
-    font-size: 18px;
-    font-weight: 700;
-    text-align: center;
-    color: #7f8c8d;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  color: #7f8c8d;
 }
 
 .fecha-hora {
-    color: #95a5a6;
-    font-size: 16px;
+  color: #95a5a6;
+  font-size: 16px;
 }
 
 .subtitulo {
@@ -275,7 +279,7 @@ select:focus {
     justify-content: center;
   }
 
-  
+
 }
 
 /* Estilo para el contenedor de los campos */
@@ -512,13 +516,13 @@ th {
   .container {
     flex-direction: column;
     /* Apilado vertical */
-    padding: 0.7rem;
+    padding: 0.3rem;
     /* Sin padding */
     margin: 0;
     /* Sin margen */
   }
 
-  body{
+  body {
     margin: 0 auto;
   }
 
@@ -531,7 +535,7 @@ th {
     /* Ajuste de tamaño de fuente */
   }
 
-  body{
+  body {
     margin: 0 auto;
   }
 

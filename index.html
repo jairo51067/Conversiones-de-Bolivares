@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -53,7 +52,7 @@
     </header>
 
     <!-- TODO Fecha y Hora -->
-    <div class="card shadow-sm border-0 rounded-1 p-3 mb-1 bg-dark" style="max-width: 1020px;">
+    <div class="card shadow-sm border-0 rounded-2 p-3 mb-1 bg-dark" style="max-width: 1020px;">
         <div class="d-flex flex-column flex-md-row justify-content-between">
             <!-- Sección de Fecha y Hora -->
             <div class="d-flex flex-column align-items-start text-start align-items-md-start text-md-start">
@@ -92,27 +91,31 @@
         </div>
     </div>
 
-    <main class="container mt-2 mb-2">
+    <main class="container mt-2 mb-2 rounded-2">
         <!-- DOLAR BCV - EURO BCV -->
-        <div class="container-valorDollar rounded-2">
+        <div class="container-valorDollar rounded-2 bg-dark mb-1">
             <!--TODO: Dolar BCV-->
-            <div class="alert alert-dark my-2;" role="alert">
-                <strong>Valor del Dolar BCV</strong>
+            <div class="alert alert-dark alert-currency mb-3" role="alert">
+                <strong class="h6 mb-0 fw-semibold">Dólar BCV</strong>
+                <small class="opacity-75 d-block">Banco Central de Venezuela</small>
             </div>
             <div>
-                <div class="d-flex align-items-center mb-0">
+                <!-- <div class="d-flex align-items-center mb-0">
                     <img style="margin-left: 7%;" src="src/assets/simbolo_del_dolar-sf.png" width="40px" height="40px"
                         alt="Logo Banco Central de Venezuela" class="rounded-circle">
                     <div class="p-3 w-100 d-flex">
-                        <h2>BCV</h2>
-                        <a href="https://www.bcv.org.ve/" target="_blank"
-                            class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover w-100 align-self-center text-center fw-bold">Sitio
-                            web del BCV</a>
+                        <h2 class="text-white">BCV</h2>
                     </div>
-                </div>
+                </div> -->
                 <div id="resultadoBcv" style="font-size: 24px; font-weight: 700; text-align: center;">
                     Cargando datos...
                 </div>
+                <br>
+                <a href="https://www.bcv.org.ve/" target="_blank" class="bcv-link d-block mb-3 text-center"
+                    aria-label="Visitar sitio oficial BCV">
+                    <i class="fas fa-external-link-alt me-1"></i>
+                    Sitio web oficial BCV
+                </a>
                 <br>
                 <button id="actualizar" type="button" class="btn btn-outline-success">Actualizar Datos <i
                         class="fas fa-sync-alt"></i>
@@ -121,32 +124,37 @@
 
             <!--TODO: Euro BCV-->
             <hr>
-            <div class="alert alert-dark my-2;" role="alert">
-                <strong>Valor del Euro BCV</strong>
+            <div class="alert alert-dark alert-currency mb-3" role="alert">
+                <strong class="h6 mb-0 fw-semibold">Euro BCV</strong>
+                <small class="opacity-75 d-block">Banco Central de Venezuela</small>
             </div>
             <div>
-                <div class="d-flex align-items-center mb-0">
+                <!-- <div class="d-flex align-items-center mb-0">
                     <img src="src/assets/euro-vector-icon-money_sf.png" width="70px" height="70px" alt="logo del euro">
                     <div class="p-3 w-100 d-flex">
                         <h2>BCV</h2>
                         <a href="https://www.bcv.org.ve/" target="_blank"
                             class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover w-100 align-self-center text-center fw-bold">Sitio
                             web del BCV</a>
-                    </div>
-                </div>
-                <div id="resultadoEuroOficial" style="font-size: 24px; font-weight: 700; text-align: center;">Cargando
-                    datos...
-                </div>
-                <br>
-                <button id="actualizarEuro" type="button" class="btn btn-outline-success">Actualizar Datos <i
-                        class="fas fa-sync-alt"></i>
-                </button>
+                    </div> -->
             </div>
+            <div id="resultadoEuroOficial" style="font-size: 24px; font-weight: 700; text-align: center;">Cargando
+                datos...
+            </div>
+            <br>
+            <a href="https://www.bcv.org.ve/" target="_blank" class="bcv-link d-block mb-3 text-center"
+                aria-label="Visitar sitio oficial BCV">
+                <i class="fas fa-external-link-alt me-1"></i>
+                Sitio web oficial BCV
+            </a>
+            <br>
+            <button id="actualizarEuro" type="button" class="btn btn-outline-success">Actualizar Datos <i
+                    class="fas fa-sync-alt"></i>
+            </button>
         </div>
 
-        <br>
         <!-- DOLAR PARALELO BINANCE - TASA TRM -->
-        <div class="container-bolivarDolarPesos rounded-2">
+        <div class="container-bolivarDolarPesos rounded-2 bg-dark mb-1">
             <div class="alert alert-dark my-2;" role="alert">
                 <strong>Valor del Dolar Paralelo</strong>
             </div>
@@ -155,7 +163,7 @@
                 <div class="d-flex align-items-center mb-1">
                     <img style="margin: 4%;" src="src/assets/Binance_Logo_sf.png" width="50px" height="50px"
                         alt="Logo EnParaleloVzla" class="rounded-circle">
-                    <h2 style="padding: 2%;">P2P Binance</h2>
+                    <h2 class="text-white" style="padding: 2%;">P2P Binance</h2>
                 </div>
 
                 <div id="resultadoParalelo" style="font-size: 24px; font-weight: 700; text-align: center;">Cargando
@@ -172,9 +180,9 @@
                 <strong>Tasa Representativa del Mercado (TRM).</strong>
             </div>
             <div class="d-flex align-items-center">
-                <img src="src/assets/colombia-symbol-colombian-peso-icon-cop_sf.png" width="90px" height="90px"
-                    alt="Logo Valor del dolar">
-                <h2>Pesos COP</h2>
+                <img style="margin: 4%;" src="src/img/icono_pesos_colombia-removebg-preview.png" width="70px"
+                    height="60px" alt="Logo Valor del dolar">
+                <h2 class="text-white" style="padding: 2%;">Pesos COP</h2>
             </div>
             <div>
                 <div id="valorDolarTRM">Cargando...</div>
@@ -183,12 +191,11 @@
             </div>
         </div>
 
-        <br>
         <!-- FACTOR DE CONVERSION - BOLIVARES A PESOS - PESOS A BOLIVARES -->
-        <div class="container-factores rounded-2">
-            <div class="p-3 text-dark shadow-lg p-3 mb-0 bg-body-tertiary rounded">
+        <div class="container-factores rounded-2 bg-dark mb-2">
+            <div class="p-3 text-dark shadow-lg p-3 mb-0 rounded-2">
                 <!-- TODO: Valor del Factores de Conversion -->
-                <div class="alert alert-danger d-flex justify-content-center" role="alert">
+                <div class="alert alert-danger d-flex justify-content-center mb-2" role="alert">
                     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
                         <use xlink:href="#exclamation-triangle-fill" />
                     </svg>
@@ -196,7 +203,7 @@
                 </div>
 
                 <!-- **3** -->
-                <div class="bg-secondary rounded border">
+                <div class="bg-secondary rounded border mb-2">
                     <!-- TODO: Valor del Factor de Conversion TRM/Dolar oficial -->
                     <h4 class="subtitulo fw-bold">TRM/Dolar oficial.</h4>
                     <div id="factor-value-2" class="h2 text-light font-weight-bold text-center align-middle">
@@ -204,7 +211,7 @@
                 </div>
 
                 <!-- **2** -->
-                <div class="bg-info rounded border mb-1">
+                <div class="bg-info rounded border mb-2">
                     <!-- TODO: Valor del Factor de Conversion TRM/Euro oficial  -->
                     <h4 class="subtitulo fw-bold">TRM/Euro oficial.</h4>
                     <div id="factor-value-3" class="h2 text-dark font-weight-bold text-center align-middle">Cargando...
@@ -221,7 +228,6 @@
             </div>
         </div>
 
-        <br>
         <!-- Botones para mostrar conversores -->
         <div class="container-factores rounded-2">
             <!-- TODO Botón para mostrar el conversor -->
@@ -278,7 +284,6 @@
                     Conversor con Tasas Oficiales</button>
             </div>
         </div>
-
 
         <!--TODO: Bolivares a Pesos COP-->
         <div id="convertir-a-paralelo" class="container-factores rounded-2">
