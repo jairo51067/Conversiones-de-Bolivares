@@ -708,22 +708,125 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // TODO: para actualizar la fecha y la hora:
+// ===============================
+// FECHA Y HORA
+// ===============================
+
 function updateDateTime() {
   const now = new Date();
-  const date = now.toLocaleDateString("es-ES", {
-    weekday: "long", // día de la semana
-    year: "numeric", // año
-    month: "long", // mes
-    day: "numeric", // día
+
+  const dayName = now.toLocaleDateString("es-ES", {
+    weekday: "long",
   });
+
+  const date = now.toLocaleDateString("es-ES", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   const time = now.toLocaleTimeString("es-ES", {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
   });
-  document.getElementById("current-date").innerText = date;
-  document.getElementById("current-time").innerText = time;
+
+  document.getElementById("day-name").innerText =
+    dayName.charAt(0).toUpperCase() + dayName.slice(1);
+
+  document.getElementById("date").innerText = date;
+
+  document.getElementById("time").innerText = time;
 }
 
 setInterval(updateDateTime, 1000);
 updateDateTime();
+
+// ===============================
+// CLIMA
+// ===============================
+
+function getWeather(lat, lon) {
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=sunrise,sunset&timezone=auto`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      const temp = Math.round(data.current_weather.temperature);
+      const weatherCode = data.current_weather.weathercode;
+
+      document.getElementById("temperature").innerText = temp + "°C";
+
+      const description = getWeatherDescription(weatherCode);
+
+      document.getElementById("weather-description").innerText = description;
+
+      checkDayOrNight(data.daily.sunrise[0], data.daily.sunset[0]);
+    });
+}
+
+// ===============================
+// DIA O NOCHE
+// ===============================
+
+function checkDayOrNight(sunrise, sunset) {
+  const now = new Date();
+
+  const rise = new Date(sunrise);
+  const set = new Date(sunset);
+
+  const icon = document.getElementById("day-icon");
+  const text = document.getElementById("day-status");
+
+  if (now > rise && now < set) {
+    icon.className = "bi bi-sun text-warning me-2";
+    text.innerText = "Día";
+  } else {
+    icon.className = "bi bi-moon-stars text-info me-2";
+    text.innerText = "Noche";
+  }
+}
+
+// ===============================
+// DESCRIPCION CLIMA
+// ===============================
+
+function getWeatherDescription(code) {
+  const weatherCodes = {
+    0: "Cielo despejado",
+    1: "Mayormente despejado",
+    2: "Parcialmente nublado",
+    3: "Nublado",
+    45: "Niebla",
+    48: "Niebla con escarcha",
+    51: "Llovizna ligera",
+    61: "Lluvia ligera",
+    63: "Lluvia moderada",
+    65: "Lluvia fuerte",
+    71: "Nieve ligera",
+    80: "Chubascos",
+    95: "Tormenta",
+  };
+
+  return weatherCodes[code] || "Clima desconocido";
+}
+
+// ===============================
+// GEOLOCALIZACION
+// ===============================
+
+function initWeather() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      getWeather(lat, lon);
+    });
+  } else {
+    document.getElementById("weather-description").innerText =
+      "Geolocalización no soportada";
+  }
+}
+
+initWeather();

@@ -46,7 +46,7 @@
 
 
 <body>
-      <header class="text-white p-0 mb-4 bg-dark rounded-2 shadow-lg">
+      <header class="text-white p-3 mb-1 bg-dark rounded-2 shadow-lg">
         <div class="px-3 pt-3">
             <div class="d-flex align-items-start justify-content-between">
                 <!-- Menú hamburguesa a la izquierda -->
@@ -89,37 +89,65 @@
     </header>
 
     <!-- TODO Fecha y Hora -->
-    <div class="card shadow-sm border-0 rounded-2 p-3 mb-1 bg-dark" style="max-width: 1020px;">
-        <div class="d-flex flex-column flex-md-row justify-content-between">
-            <!-- Sección de Fecha y Hora -->
-            <div class="d-flex flex-column align-items-start text-start align-items-md-start text-md-start">
-                <!-- Fecha -->
-                <div class="d-flex align-items-center mb-1">
-                    <i class="bi bi-calendar3 text-secondary "></i>
-                    <span class="text-uppercase text-warning fw-bold fs-2">HOY</span>
-                </div>
-                <div id="current-date" class="text-white fw-bold fs-6">
-                    <span id="date">Cargando fecha...</span>
-                </div>
-                <!-- Hora -->
-                <!-- <div class="d-flex align-items-center mt-2 mt-md-0">
-                    <i class="bi bi-clock text-primary me-2"></i>
-                    <span class="text-uppercase text-warning fw-bold">Hora</span>
-                </div> -->
-                <div id="current-time" class="text-white fw-bold display-6">
-                    <span id="time">00:00</span>
-                </div>
+<div class="card shadow-sm border-0 rounded-2 p-3 mb-1 bg-dark" style="max-width:1020px;">
+
+    <div class="d-flex flex-md-row justify-content-between align-items-md-center">
+
+        <!-- FECHA Y HORA -->
+        <div class="d-flex flex-column text-start">
+
+            <!-- DIA DE LA SEMANA -->
+            <div class="d-flex align-items-center mb-1">
+                <i class="bi bi-calendar3 text-secondary me-2"></i>
+
+                <span id="day-name"
+                      class="text-uppercase text-warning fw-bold fs-2 day-glow">
+                      Cargando...
+                </span>
             </div>
-            <!-- Botón (Opcional) -->
-            <!-- <div class="mt-3 mt-md-0">
-            <button id="show-converter" type="button" class="btn btn-outline-primary rounded-pill px-4">
-                <i class="bi bi-calculator me-1"></i> Conversor
-            </button>
-        </div> -->
+
+            <!-- FECHA -->
+            <div class="text-white fw-bold fs-6">
+                <span id="date">Cargando fecha...</span>
+            </div>
+
+            <!-- HORA -->
+            <div class="text-white fw-bold display-6">
+                <span id="time">00:00</span>
+            </div>
+
         </div>
+
+
+        <!-- CLIMA -->
+        <div class="d-flex flex-column align-items-md-end mt-3 mt-md-0">
+
+            <div class="d-flex align-items-center mb-1">
+                <i id="day-icon" class="bi bi-sun text-warning me-2"></i>
+                <span id="day-status" class="text-warning fw-bold">Día</span>
+            </div>
+
+            <div class="d-flex align-items-center">
+                <i class="bi bi-thermometer-half text-info me-2 fs-4"></i>
+
+                <span id="temperature" class="text-white fw-bold fs-4">
+                    --°C
+                </span>
+            </div>
+
+            <div class="text-secondary small">
+                <span id="weather-description">
+                    Cargando clima...
+                </span>
+            </div>
+
+        </div>
+
     </div>
 
-    <!--Modal de saludo  -->
+</div>
+
+    <!--TODO Modal de saludo  -->
     <div id="modalSaludo" class="glass-modal">
         <div class="glass-content">
             <h2>👋 ¡Hola!</h2>
@@ -137,13 +165,6 @@
                 <small class="opacity-75 d-block">Banco Central de Venezuela</small>
             </div>
             <div>
-                <!-- <div class="d-flex align-items-center mb-0">
-                    <img style="margin-left: 7%;" src="src/assets/simbolo_del_dolar-sf.png" width="40px" height="40px"
-                        alt="Logo Banco Central de Venezuela" class="rounded-circle">
-                    <div class="p-3 w-100 d-flex">
-                        <h2 class="text-white">BCV</h2>
-                    </div>
-                </div> -->
                 <div id="resultadoBcv" style="font-size: 24px; font-weight: 700; text-align: center;">
                     Cargando datos...
                 </div>
@@ -188,12 +209,14 @@
             <button id="actualizarEuro" type="button" class="btn btn-outline-success">Actualizar Datos <i
                     class="fas fa-sync-alt"></i>
             </button>
+            
         </div>
 
         <!-- DOLAR PARALELO BINANCE - TASA TRM -->
         <div class="container-bolivarDolarPesos rounded-2 bg-dark mb-1">
             <div class="alert alert-dark my-2;" role="alert">
-                <strong>Valor del Dolar Paralelo</strong>
+                <strong class="h6 mb-0 fw-semibold">Dólar Paralelo</strong>
+                <small class="opacity-75 d-block">Binance Exchange</small>
             </div>
             <!--TODO: Dolar PARALELO-->
             <div>
@@ -206,7 +229,8 @@
                 <div id="resultadoParalelo" style="font-size: 24px; font-weight: 700; text-align: center;">Cargando
                     datos...
                 </div>
-                <br>
+                
+            <br>
                 <button id="actualizarParalelo" type="button" class="btn btn-outline-success">Actualizar Datos
                     <i class="fas fa-sync-alt"></i></button>
             </div>
@@ -214,7 +238,8 @@
 
             <!--TODO: Dolar TRM Colombia-->
             <div class="alert alert-dark my-2;" role="alert">
-                <strong>Tasa Representativa del Mercado (TRM).</strong>
+                <strong class="h6 mb-0 fw-semibold">Tasa Representativa del Mercado - TRM.</strong>
+                <small class="opacity-75 d-block">www.fastforex.io</small>
             </div>
             <div class="d-flex align-items-center">
                 <img style="margin: 4%;" src="src/assets/icono_pesos_colombia-removebg-preview.png" width="70px"
@@ -223,9 +248,16 @@
             </div>
             <div>
                 <div id="valorDolarTRM">Cargando...</div>
+                 <br>
+            <a href="https://www.fastforex.io/" target="_blank" class="bcv-link d-block mb-3 text-center"
+                aria-label="Visitar sitio oficial www.fastforex.io">
+                <i class="fas fa-external-link-alt me-1"></i>
+                Sitio web oficial www.fastforex.io
+            </a>
                 <button id="actualizarTRM" type="button" class="btn btn-outline-success">Actualizar Datos <i
                         class="fas fa-sync-alt"></i></button>
             </div>
+            
         </div>
 
         <!-- FACTOR DE CONVERSION - BOLIVARES A PESOS - PESOS A BOLIVARES -->

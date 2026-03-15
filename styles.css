@@ -84,6 +84,11 @@ hr {
   margin: 2%;
 }
 
+.day-glow{
+text-shadow:0 0 6px rgba(255,193,7,0.8),0 0 12px rgba(255,193,7,0.6);
+}
+
+
 #current-date::first-letter {
   text-transform: uppercase;
 }
@@ -150,7 +155,11 @@ hr {
 }
 
 .valor-moneda {
-  color: #27ae60;
+  /* color: #27ae60; */
+  font-size: 26px;
+  color: #ffc107;
+  text-transform: uppercase;
+  text-shadow:0 0 6px rgba(255,193,7,0.1),0 0 12px rgba(255,193,7,0.6);
   font-weight: bold;
 }
 
