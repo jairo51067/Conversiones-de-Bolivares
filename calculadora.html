@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <title>Calculadora Pro</title>
+    <style>
+        /* ESTILOS GENERALES DE LA CALCULADORA */
+        .calculator { 
+            max-width: 350px; 
+            margin: 20px auto; 
+            background: linear-gradient(145deg, #1e3c72, #2a5298);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        /* BOTÓN DE REGRESO - HEADER */
+        .header-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(145deg, #ff6b6b, #ee5a24);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        .header-btn:hover {
+            transform: scale(1.1) translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,107,107,0.6);
+        }
+
+        /* DISPLAY RESPONSIVE */
+        .display { 
+            background: rgba(0,0,0,0.8); 
+            color: #00ff88; 
+            font-weight: bold;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: right;
+            margin-bottom: 20px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            box-shadow: inset 0 5px 10px rgba(0,0,0,0.5);
+            overflow: hidden;
+            transition: font-size 0.3s ease;
+            margin-top: 70px; /* Espacio para botón regreso */
+        }
+
+        /* ESTILOS DE BOTONES */
+        .btn-calc {
+            height: 70px;
+            border-radius: 15px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            border: none;
+            margin: 5px;
+            transition: all 0.2s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .btn-calc:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+        .btn-number { background: linear-gradient(145deg, #667eea, #764ba2); color: white; }
+        .btn-operator { background: linear-gradient(145deg, #f093fb, #f5576c); color: white; }
+        .btn-clear { background: linear-gradient(145deg, #ffecd2, #fcb69f); color: #333; }
+        .btn-equals { background: linear-gradient(145deg, #4facfe, #00f2fe); color: white; font-size: 1.6rem; }
+    </style>
+</head>
+<body class="bg-dark">
+    <div class="container position-relative">
+        <!-- BOTÓN DE REGRESO A LA APP PRINCIPAL -->
+        <button class="header-btn" onclick="goBackToApp()" title="Regresar a Conversor">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+
+        <div class="calculator">
+            <!-- DISPLAY RESPONSIVE -->
+            <div class="display" id="display">0</div>
+            
+            <!-- FILA 1: C, ⌫, ÷, × -->
+            <div class="row g-2">
+                <div class="col-3">
+                    <button class="btn btn-calc btn-clear w-100" onclick="clearDisplay()">
+                        <i class="fas fa-trash"></i> C
+                    </button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-calc btn-clear w-100" onclick="deleteLast()">⌫</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-calc btn-operator w-100" onclick="appendToDisplay('/')">÷</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-calc btn-operator w-100" onclick="appendToDisplay('*')">×</button>
+                </div>
+            </div>
+
+            <!-- FILA 2: 1, 2, 3, - -->
+            <div class="row g-2">
+                <div class="col-3">
+                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('1')">1</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('2')">2</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('3')">3</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-calc btn-operator w-100" onclick="appendToDisplay('-')">-</button>
+                </div>
+            </div>
+
+            <!-- FILA 3: 4, 5, 6, + -->
+            <div class="row g-2">
+                <div class="col-3">
+                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('4')">4</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('5')">5</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('6')">6</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-calc btn-operator w-100" onclick="appendToDisplay('+')">+</button>
+                </div>
+            </div>
+
+            <!-- FILA 4: 7, 8, 9, = -->
+            <div class="row g-2">
+                <div class="col-3">
+                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('7')">7</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('8')">8</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('9')">9</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-calc btn-equals w-100" onclick="calculate()">=</button>
+                </div>
+            </div>
+
+            <!-- FILA 5: 0, . -->
+            <div class="row g-2">
+                <div class="col-9">
+                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('0')" style="height:70px;">0</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('.')">.</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // VARIABLES GLOBALES
+        let display = document.getElementById('display');
+        let currentInput = '0';
+
+        // FUNCIÓN: REGRESA A LA APLICACIÓN PRINCIPAL
+        function goBackToApp() {
+            // Opción 1: Cierra la ventana (si se abrió con target="_blank")
+            if (window.opener) {
+                window.close();
+            } else {
+                // Opción 2: Regresa a página anterior
+                window.history.back();
+            }
+        }
+
+        // FUNCIÓN: Agrega números/operadores al display
+        function appendToDisplay(value) {
+            if (currentInput === '0' && !['+', '-', '*', '/', '÷'].includes(value)) {
+                currentInput = value;
+            } else {
+                currentInput += value;
+            }
+            updateDisplay();
+        }
+
+        // FUNCIÓN: Limpia todo el display
+        function clearDisplay() {
+            currentInput = '0';
+            updateDisplay();
+        }
+
+        // FUNCIÓN: Borra último carácter
+        function deleteLast() {
+            currentInput = currentInput.slice(0, -1) || '0';
+            updateDisplay();
+        }
+
+        // FUNCIÓN: Realiza el cálculo
+        function calculate() {
+            try {
+                let expression = currentInput.replace('×', '*').replace('÷', '/');
+                let result = eval(expression);
+                result = Math.round(result * 100000000) / 100000000;
+                currentInput = result.toString();
+                updateDisplay();
+            } catch (error) {
+                display.textContent = 'Error';
+                currentInput = '0';
+                setTimeout(clearDisplay, 1500);
+            }
+        }
+
+        // FUNCIÓN: ACTUALIZA DISPLAY CON RESPONSIVE AUTOMÁTICO
+        function updateDisplay() {
+            display.textContent = currentInput;
+            const textLength = currentInput.length;
+            let fontSize = 2.5;
+            
+            if (textLength > 12) fontSize = 1.8;
+            else if (textLength > 9) fontSize = 2.1;
+            else if (textLength > 6) fontSize = 2.3;
+            
+            display.style.fontSize = fontSize + 'rem';
+        }
+
+        // EVENTOS DE TECLADO (INCLUYE ESCAPE PARA REGRESAR)
+        document.addEventListener('keydown', function(e) {
+            if (e.key >= '0' && e.key <= '9' || e.key === '.') {
+                appendToDisplay(e.key);
+            }
+            else if (e.key === '+' || e.key === '-') {
+                appendToDisplay(e.key);
+            }
+            else if (e.key === '*') {
+                appendToDisplay('×');
+            }
+            else if (e.key === '/') {
+                appendToDisplay('÷');
+            }
+            else if (e.key === 'Enter' || e.key === '=') {
+                calculate();
+            }
+            else if (e.key === 'Escape') {
+                goBackToApp(); // ESCAPE = REGRESAR
+            }
+            else if (e.key === 'Backspace') {
+                deleteLast();
+            }
+        });
+    </script>
+</body>
+</html>

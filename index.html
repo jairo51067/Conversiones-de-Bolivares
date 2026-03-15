@@ -38,16 +38,53 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- CSS de Toastify (en el <head>) -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- Font Awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <title>Conversiones de Bolivares</title>
 </head>
 
 
 <body>
-    <header class="text-white p-0 mb-1 bg-dark rounded-2">
-        <div class="align-middle">
-            <h1 class="px-3 pt-3 text-warning"> Conversor de Monedas</h1>
-            <p class="px-3"> Valor del Dolar - Conversiones</p>
+      <header class="text-white p-0 mb-4 bg-dark rounded-2 shadow-lg">
+        <div class="px-3 pt-3">
+            <div class="d-flex align-items-start justify-content-between">
+                <!-- Menú hamburguesa a la izquierda -->
+                <div class="dropdown me-3">
+                    <button class="btn btn-warning btn-sm dropdown-toggle p-1 text-dark shadow-sm" 
+                            type="button" 
+                            data-bs-toggle="dropdown" 
+                            aria-expanded="false">
+                        <i class="fas fa-bars fs-5"></i>
+                    </button>
+                    <ul class="dropdown-menu bg-dark border-warning shadow-lg">
+                        <!-- CALCULADORA MODERNA (EMBEDDED) -->
+                        <li>
+                            <a class="dropdown-item text-white fw-bold" href="calculadora.html" onclick="openCalculator()">
+                                <i class="fas fa-calculator me-2 text-warning"></i>Abrir Calculadora
+                            </a>
+                        </li>
+                        <!-- CALENDARIO GOOGLE -->
+                        <li>
+                            <a class="dropdown-item text-white fw-bold" href="https://calendar.google.com/calendar/u/0/r" target="_blank">
+                                <i class="fas fa-calendar-alt me-2 text-success"></i>Abrir Calendario
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider bg-white opacity-25"></li>
+                        <li>
+                            <a class="dropdown-item text-muted" href="#">
+                                <i class="fas fa-info-circle me-2"></i>Acerca de
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Título y subtítulo -->
+                <div class="flex-grow-1 ms-2">
+                    <h1 class="text-warning mb-1 fs-3 fw-bold">💰 Conversor de Monedas</h1>
+                    <p class="mb-0 small text-light opacity-90">Valor del Dólar - Conversiones en tiempo real</p>
+                </div>
+            </div>
         </div>
     </header>
 
