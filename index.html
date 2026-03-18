@@ -39,38 +39,41 @@
     <!-- CSS de Toastify (en el <head>) -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <!-- Font Awesome -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css para animaciones: -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <title>Conversiones de Bolivares</title>
 </head>
 
 
 <body>
-      <header class="text-white p-3 mb-1 bg-dark rounded-2 shadow-lg">
+    <header class="text-white p-3 mb-1 bg-dark rounded-2 shadow-lg">
         <div class="px-3 pt-3">
             <div class="d-flex align-items-start justify-content-between">
                 <!-- Menú hamburguesa a la izquierda -->
                 <div class="dropdown me-3">
-                    <button class="btn btn-warning btn-sm dropdown-toggle p-1 text-dark shadow-sm" 
-                            type="button" 
-                            data-bs-toggle="dropdown" 
-                            aria-expanded="false">
+                    <button class="btn btn-warning btn-sm dropdown-toggle p-1 text-dark shadow-sm" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-bars fs-5"></i>
                     </button>
                     <ul class="dropdown-menu bg-dark border-warning shadow-lg">
                         <!-- CALCULADORA MODERNA (EMBEDDED) -->
                         <li>
-                            <a class="dropdown-item text-white fw-bold" href="calculadora.html" onclick="openCalculator()">
+                            <a class="dropdown-item text-white fw-bold" href="calculadora.html"
+                                onclick="openCalculator()">
                                 <i class="fas fa-calculator me-2 text-warning"></i>Abrir Calculadora
                             </a>
                         </li>
                         <!-- CALENDARIO GOOGLE -->
-                        <li>
+                        <!-- <li>
                             <a class="dropdown-item text-white fw-bold" href="https://calendar.google.com/calendar/u/0/r" target="_blank">
                                 <i class="fas fa-calendar-alt me-2 text-success"></i>Abrir Calendario
                             </a>
+                        </li> -->
+                        <li>
+                            <hr class="dropdown-divider bg-white opacity-25">
                         </li>
-                        <li><hr class="dropdown-divider bg-white opacity-25"></li>
                         <li>
                             <a class="dropdown-item text-muted" href="#">
                                 <i class="fas fa-info-circle me-2"></i>Acerca de
@@ -78,7 +81,7 @@
                         </li>
                     </ul>
                 </div>
-                
+
                 <!-- Título y subtítulo -->
                 <div class="flex-grow-1 ms-2">
                     <h1 class="text-warning mb-1 fs-3 fw-bold">💰 Conversor de Monedas</h1>
@@ -89,72 +92,55 @@
     </header>
 
     <!-- TODO Fecha y Hora -->
-<div class="card shadow-sm border-0 rounded-2 p-3 mb-1 bg-dark" style="max-width:1020px;">
-
-    <div class="d-flex flex-md-row justify-content-between align-items-md-center">
-
-        <!-- FECHA Y HORA -->
-        <div class="d-flex flex-column text-start">
-
-            <!-- DIA DE LA SEMANA -->
-            <div class="d-flex align-items-center mb-1">
-                <i class="bi bi-calendar3 text-secondary me-2"></i>
-
-                <span id="day-name"
-                      class="text-uppercase text-warning fw-bold fs-2 day-glow">
-                      Cargando...
-                </span>
+    <div class="card shadow-sm border-0 rounded-2 p-3 mb-1 bg-dark" style="max-width:1020px;">
+        <div class="d-flex flex-md-row justify-content-between align-items-md-center">
+            <!-- FECHA Y HORA -->
+            <div class="d-flex flex-column text-start">
+                <!-- DIA DE LA SEMANA -->
+                <div class="d-flex align-items-center mb-1">
+                    <i class="bi bi-calendar3 text-secondary"></i>
+                    <span id="day-name" class="text-uppercase text-warning fw-bold fs-2 day-glow">
+                        Cargando...
+                    </span>
+                </div>
+                <!-- FECHA -->
+                <div class="text-white fw-bold fs-6">
+                    <span id="date">Cargando fecha...</span>
+                </div>
+                <!-- HORA -->
+                <div class="text-white fw-bold display-6">
+                    <span id="time">00:00</span>
+                </div>
             </div>
-
-            <!-- FECHA -->
-            <div class="text-white fw-bold fs-6">
-                <span id="date">Cargando fecha...</span>
+            <!-- CLIMA -->
+            <div class="d-flex flex-column align-items-md-end mt-3 mt-md-0">
+                <div class="d-flex align-items-center mb-1">
+                    <i id="day-icon" class="bi bi-sun text-warning me-2"></i>
+                    <span id="day-status" class="text-warning fw-bold">Día</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-thermometer-half text-info me-2 fs-4"></i>
+                    <span id="temperature" class="text-white fw-bold fs-4">
+                        --°C
+                    </span>
+                </div>
+                <div class="text-secondary small">
+                    <span id="weather-description">
+                        Cargando clima...
+                    </span>
+                </div>
             </div>
-
-            <!-- HORA -->
-            <div class="text-white fw-bold display-6">
-                <span id="time">00:00</span>
-            </div>
-
         </div>
-
-
-        <!-- CLIMA -->
-        <div class="d-flex flex-column align-items-md-end mt-3 mt-md-0">
-
-            <div class="d-flex align-items-center mb-1">
-                <i id="day-icon" class="bi bi-sun text-warning me-2"></i>
-                <span id="day-status" class="text-warning fw-bold">Día</span>
-            </div>
-
-            <div class="d-flex align-items-center">
-                <i class="bi bi-thermometer-half text-info me-2 fs-4"></i>
-
-                <span id="temperature" class="text-white fw-bold fs-4">
-                    --°C
-                </span>
-            </div>
-
-            <div class="text-secondary small">
-                <span id="weather-description">
-                    Cargando clima...
-                </span>
-            </div>
-
-        </div>
-
     </div>
 
-</div>
-
     <!--TODO Modal de saludo  -->
-    <div id="modalSaludo" class="glass-modal">
+    <!-- <div id="modalSaludo" class="glass-modal">
         <div class="glass-content">
             <h2>👋 ¡Hola!</h2>
             <p>¡Bienvenido a:<br><strong>Tu Conversor de Monedas!</strong></p>
             <button onclick="cerrarSaludo()">¡Genial!</button>
         </div>
-    </div>
+    </div> -->
 
     <main class="container mt-2 mb-2 rounded-2">
         <!-- DOLAR BCV - EURO BCV -->
@@ -209,7 +195,7 @@
             <button id="actualizarEuro" type="button" class="btn btn-outline-success">Actualizar Datos <i
                     class="fas fa-sync-alt"></i>
             </button>
-            
+
         </div>
 
         <!-- DOLAR PARALELO BINANCE - TASA TRM -->
@@ -229,8 +215,8 @@
                 <div id="resultadoParalelo" style="font-size: 24px; font-weight: 700; text-align: center;">Cargando
                     datos...
                 </div>
-                
-            <br>
+
+                <br>
                 <button id="actualizarParalelo" type="button" class="btn btn-outline-success">Actualizar Datos
                     <i class="fas fa-sync-alt"></i></button>
             </div>
@@ -248,69 +234,147 @@
             </div>
             <div>
                 <div id="valorDolarTRM">Cargando...</div>
-                 <br>
-            <a href="https://www.fastforex.io/" target="_blank" class="bcv-link d-block mb-3 text-center"
-                aria-label="Visitar sitio oficial www.fastforex.io">
-                <i class="fas fa-external-link-alt me-1"></i>
-                Sitio web oficial www.fastforex.io
-            </a>
+                <br>
+                <a href="https://www.fastforex.io/" target="_blank" class="bcv-link d-block mb-3 text-center"
+                    aria-label="Visitar sitio oficial www.fastforex.io">
+                    <i class="fas fa-external-link-alt me-1"></i>
+                    Sitio web oficial www.fastforex.io
+                </a>
                 <button id="actualizarTRM" type="button" class="btn btn-outline-success">Actualizar Datos <i
                         class="fas fa-sync-alt"></i></button>
             </div>
-            
+
         </div>
 
         <!-- FACTOR DE CONVERSION - BOLIVARES A PESOS - PESOS A BOLIVARES -->
-        <div class="container-factores rounded-2 bg-dark mb-2">
-            <div class="p-3 text-dark shadow-lg p-3 mb-0 rounded-2">
-                <!-- TODO: Valor del Factores de Conversion -->
-                <div class="alert alert-danger d-flex justify-content-center mb-2" role="alert">
-                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-                        <use xlink:href="#exclamation-triangle-fill" />
-                    </svg>
-                    <strong class="m-2">Factores de Conversión</strong>
+        <div class="container-factores bg-dark">
+            <div class="card shadow-lg border-0 overflow-hidden animate__animated animate__fadeInUp bg-dark">
+                <!-- Header del Card -->
+                <div class="card-header bg-gradient  border-0 position-relative overflow-hidden text-white">
+                    <div
+                        class="alert alert-danger border-0 bg-transparent m-0 d-flex align-items-center justify-content-center animate__animated animate__pulse animate__infinite">
+                        <svg class="bi flex-shrink-0 me-3" width="28" height="28" fill="currentColor" role="img"
+                            aria-label="Danger:">
+                            <use xlink:href="#exclamation-triangle-fill" />
+                        </svg>
+                        <h5 class="mb-0 fw-bold lh-1 text-uppercase letter-spacing-1 tracking-wider text-white">
+                            <i class="fas fa-chart-line me-2"></i>
+                            Factores de Conversión
+                        </h5>
+                    </div>
+                    <!-- Decoración animada -->
+                    <div class="position-absolute top-0 end-0 w-100 h-100 bg-danger opacity-10"></div>
                 </div>
 
-                <!-- **3** -->
-                <div class="bg-secondary rounded border mb-2">
-                    <!-- TODO: Valor del Factor de Conversion TRM/Dolar oficial -->
-                    <h4 class="subtitulo fw-bold">TRM/Dolar oficial.</h4>
-                    <div id="factor-value-2" class="h2 text-light font-weight-bold text-center align-middle">
-                        Cargando...</div>
-                </div>
+                <!-- Body del Card -->
+                <div class="card-body p-0">
+                    <!-- TRM/Dólar Paralelo - Prioridad 1 -->
+                    <div
+                        class="factor-card bg-gradient-warning text-dark border-0 mb-3 mx-3 mt-3 position-relative overflow-hidden animate__animated animate__zoomIn">
+                        <div class="p-4 text-center">
+                            <div
+                                class="position-absolute top-0 start-0 bg-danger opacity-20 w-50 h-2 rounded-bottom-end">
+                            </div>
+                            <h4 class="factor-title fw-bolder mb-3 text-uppercase tracking-wider fs-6 lh-sm">
+                                <i class="fas fa-coins me-2 text-danger"></i>
+                                TRM / Dólar Paralelo
+                            </h4>
+                            <div id="factor-value"
+                                class="h1 fw-bolder mb-2 lh-1 display-4 animate__animated animate__pulse animate__infinite"
+                                style="font-family: 'SF Pro Display', -apple-system, system-ui, sans-serif;">
+                                <span class="loading-placeholder">Cargando...</span>
+                                <span class="value-placeholder d-none">$ 4,250.00</span>
+                            </div>
+                            <!-- <div
+                                class="badge bg-danger-subtle text-danger border border-danger px-3 py-2 fw-semibold animate__animated animate__flash animate__infinite">
+                                <i class="fas fa-fire me-1"></i>Actualizado
+                            </div> -->
+                        </div>
+                    </div>
 
-                <!-- **2** -->
-                <div class="bg-info rounded border mb-2">
-                    <!-- TODO: Valor del Factor de Conversion TRM/Euro oficial  -->
-                    <h4 class="subtitulo fw-bold">TRM/Euro oficial.</h4>
-                    <div id="factor-value-3" class="h2 text-dark font-weight-bold text-center align-middle">Cargando...
+                    <!-- TRM/Dólar Oficial - Prioridad 2 -->
+                    <div
+                        class="factor-card bg-gradient-dark text-white border-0 mb-3 mx-3 position-relative overflow-hidden animate__animated animate__slideInUp">
+                        <div class="p-4 text-center">
+                            <div
+                                class="position-absolute top-0 end-0 bg-primary opacity-20 w-50 h-2 rounded-bottom-start">
+                            </div>
+                            <h4 class="factor-title fw-bolder mb-3 text-uppercase tracking-wider fs-6 lh-sm">
+                                <i class="fas fa-building-columns me-2"></i>
+                                TRM / Dólar Oficial
+                            </h4>
+                            <div id="factor-value-2"
+                                class="h1 fw-bolder mb-2 lh-1 display-4 animate__animated animate__pulse animate__infinite"
+                                style="font-family: 'SF Pro Display', -apple-system, system-ui, sans-serif;">
+                                <span class="loading-placeholder">Cargando...</span>
+                                <span class="value-placeholder d-none">$ 4,120.00</span>
+                            </div>
+                            <!-- <div class="badge bg-light text-dark border border-light px-3 py-2 fw-semibold">
+                                <i class="fas fa-check-circle me-1"></i>Oficial
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <!-- TRM/Euro Oficial - Prioridad 3 -->
+                    <div
+                        class="factor-card bg-gradient-info text-dark border-0 mx-3 mb-3 position-relative overflow-hidden animate__animated animate__slideInDown">
+                        <div class="p-4 text-center">
+                            <div
+                                class="position-absolute bottom-0 start-0 bg-success opacity-20 w-100 h-2 rounded-top-end">
+                            </div>
+                            <h4 class="factor-title fw-bolder mb-3 text-uppercase tracking-wider fs-6 lh-sm">
+                                <i class="fas fa-euro-sign me-2"></i>
+                                TRM / Euro Oficial
+                            </h4>
+                            <div id="factor-value-3"
+                                class="h1 fw-bolder mb-2 lh-1 display-4 animate__animated animate__pulse animate__infinite"
+                                style="font-family: 'SF Pro Display', -apple-system, system-ui, sans-serif;">
+                                <span class="loading-placeholder">Cargando...</span>
+                                <span class="value-placeholder d-none">€ 4,480.00</span>
+                            </div>
+                            <!-- <div class="badge bg-info-subtle text-info border border-info px-3 py-2 fw-semibold">
+                                <i class="fas fa-globe-europe me-1"></i>Europeo
+                            </div> -->
+                        </div>
                     </div>
                 </div>
 
-                <!-- **1** -->
-                <div class="bg-warning rounded border mb-1">
-                    <!-- TODO: Valor del Factor de Conversion TRM/Dolar paralelo -->
-                    <h4 class="subtitulo fw-bold">TRM/Dolar paralelo.</h4>
-                    <div id="factor-value" class="h2 text-danger font-weight-bold text-center align-middle">Cargando...
-                    </div>
+                <!-- Footer con info -->
+                <div class="card-footer bg-dark text-white text-center border-0">
+                    <small class="text-muted">
+                        <i class="fas fa-clock me-1"></i>
+                        Última actualización: <span id="last-update" class="fw-semibold">Hace unos segundos</span>
+                    </small>
                 </div>
             </div>
         </div>
 
         <!-- Botones para mostrar conversores -->
-        <div class="container-factores rounded-2">
-            <!-- TODO Botón para mostrar el conversor -->
-            <div class="boton-convertidor w-100 mt-2 mt-md-0">
-                <button id="show-converter" type="button" class="btn btn-secondary fw-bold">Ir a Conversor con Tasas
-                    Oficiales</button>
+        <div class="container-factores rounded-2 p-3 p-md-4">
+    <div class="row g-3 g-md-4 justify-content-center">
+        <!-- Conversor con Tasas Oficiales -->
+        <div class="col-12 col-md-6">
+            <div class="boton-convertidor text-center">
+                <button id="show-converter" type="button" class="btn btn-outline-primary btn-lg w-100 fw-bold py-3 shadow-sm border-3">
+                    <i class="bi bi-currency-exchange me-2"></i>
+                    <span class="d-none d-md-inline">Abrir </span>
+                    Conversor Tasas Oficiales
+                </button>
             </div>
-            <!-- TODO Botón para mostrar el conversor -->
-            <div class="boton-convertidor">
-                <button id="show-converter-paralelo" type="button" class="btn btn-warning fw-bold">Ir a Conversor con
-                    Tasas Paralelo </button>
-            </div>
-
         </div>
+        
+        <!-- Conversor con Tasas Paralelo -->
+        <div class="col-12 col-md-6">
+            <div class="boton-convertidor text-center">
+                <button id="show-converter-paralelo" type="button" class="btn btn-warning btn-lg w-100 fw-bold py-3 shadow-sm border-3">
+                    <i class="bi bi-currency-exchange me-2"></i>
+                    <span class="d-none d-md-inline">Abrir </span>
+                    Conversor Tasas Paralelo
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
         <!-- CONVERSOR CON TASAS OFICIALES -->
         <!-- TODO: Contenedor del conversor, inicialmente oculto -->

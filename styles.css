@@ -509,6 +509,102 @@ th {
   text-align: start;
 }
 
+/* Estilos PRO para Factores de Conversión */
+.container-factores {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.factor-card {
+    border-radius: 20px !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.factor-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.25) !important;
+}
+
+.bg-gradient-warning {
+    background: linear-gradient(135deg, #ffc107 0%, #ff8c00 50%, #ff5722 100%) !important;
+}
+
+.bg-gradient-dark {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
+}
+
+.bg-gradient-info {
+    background: linear-gradient(135deg, #0dcaf0 0%, #00b4d8 50%, #0077b6 100%) !important;
+}
+
+.tracking-wider {
+    letter-spacing: 0.05em;
+}
+
+/* ⭐ CORRECCIONES PARA VISIBILIDAD DE TÍTULOS ⭐ */
+.card-header {
+    z-index: 10 !important;
+    position: relative !important;
+}
+
+.card-header .alert {
+    position: relative !important;
+    z-index: 20 !important;
+}
+
+.card-header h5 {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
+    z-index: 30 !important;
+}
+
+.card-footer {
+    z-index: 10 !important;
+    position: relative !important;
+}
+
+.card-footer small {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5) !important;
+}
+
+.card-footer .text-muted {
+    color: #cccccc !important;
+}
+
+/* Asegurar que los títulos de factores sean visibles */
+.factor-title {
+    position: relative !important;
+    z-index: 15 !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.7) !important;
+    -webkit-text-stroke: 0.5px rgba(255,255,255,0.3);
+}
+
+.loading-placeholder {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.value-placeholder.show {
+    animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.98); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
 /* Media query para pantallas de 1000px o menos */
 @media only screen and (max-width: 1000px) {
   html {

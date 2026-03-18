@@ -830,3 +830,16 @@ function initWeather() {
 }
 
 initWeather();
+
+
+// Función para mostrar valores cargados
+function updateFactorValue(id, value) {
+    const element = document.getElementById(id);
+    const loading = element.querySelector('.loading-placeholder');
+    const valueSpan = element.querySelector('.value-placeholder');
+    
+    loading.classList.add('d-none');
+    valueSpan.textContent = value;
+    valueSpan.classList.remove('d-none');
+    valueSpan.classList.add('show');
+}
