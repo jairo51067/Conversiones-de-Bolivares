@@ -1,259 +1,273 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <title>Calculadora Pro</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <title>Calculator PRO</title>
+
     <style>
-        /* ESTILOS GENERALES DE LA CALCULADORA */
-        .calculator { 
-            max-width: 350px; 
-            margin: 20px auto; 
-            background: linear-gradient(145deg, #1e3c72, #2a5298);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        :root {
+            --bg: #0d0f14;
+            --card: #171a21;
+            --text: #ffffff;
+            --muted: #8b90a0;
+            --accent: #4f8cff;
+            --danger: #ff5c5c;
+            --border: rgba(255, 255, 255, 0.06);
         }
 
-        /* BOTÓN DE REGRESO - HEADER */
-        .header-btn {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: linear-gradient(145deg, #ff6b6b, #ee5a24);
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            color: white;
-            font-size: 1.2rem;
-            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
-            transition: all 0.3s;
-            z-index: 10;
-        }
-        .header-btn:hover {
-            transform: scale(1.1) translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255,107,107,0.6);
+        /* Base */
+        body {
+            background: var(--bg);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: var(--text);
         }
 
-        /* DISPLAY RESPONSIVE */
-        .display { 
-            background: rgba(0,0,0,0.8); 
-            color: #00ff88; 
-            font-weight: bold;
-            border-radius: 15px;
-            padding: 20px;
-            text-align: right;
-            margin-bottom: 20px;
-            min-height: 80px;
+        /* Layout */
+        .app {
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            box-shadow: inset 0 5px 10px rgba(0,0,0,0.5);
-            overflow: hidden;
-            transition: font-size 0.3s ease;
-            margin-top: 70px; /* Espacio para botón regreso */
+            justify-content: center;
         }
 
-        /* ESTILOS DE BOTONES */
-        .btn-calc {
-            height: 70px;
-            border-radius: 15px;
-            font-size: 1.4rem;
-            font-weight: bold;
-            border: none;
-            margin: 5px;
-            transition: all 0.2s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        /* Calculator */
+        .calculator {
+            width: 100%;
+            max-width: 340px;
+            background: var(--card);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--border);
         }
-        .btn-calc:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
-        .btn-number { background: linear-gradient(145deg, #667eea, #764ba2); color: white; }
-        .btn-operator { background: linear-gradient(145deg, #f093fb, #f5576c); color: white; }
-        .btn-clear { background: linear-gradient(145deg, #ffecd2, #fcb69f); color: #333; }
-        .btn-equals { background: linear-gradient(145deg, #4facfe, #00f2fe); color: white; font-size: 1.6rem; }
+
+        /* Display */
+        .display {
+            background: #0a0c10;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: right;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            overflow: hidden;
+            letter-spacing: 1px;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        /* Buttons */
+        .btn-calc {
+            height: 64px;
+            border-radius: 14px;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: all .2s ease;
+        }
+
+        /* Variants */
+        .btn-num {
+            background: #1f2330;
+            color: white;
+        }
+
+        .btn-op {
+            background: #2a2f3d;
+            color: var(--accent);
+        }
+
+        .btn-eq {
+            background: var(--accent);
+            color: white;
+            grid-column: span 2;
+        }
+
+        .btn-clear {
+            background: #2a2f3d;
+            color: var(--danger);
+        }
+
+        /* Hover */
+        .btn-calc:hover {
+            transform: translateY(-2px);
+            opacity: .9;
+        }
+
+        /* Active */
+        .btn-calc:active {
+            transform: scale(0.96);
+        }
+
+        /* Special */
+        .zero {
+            grid-column: span 2;
+        }
+
+        /* Header btn */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            color: var(--muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .calculator {
+                padding: 18px;
+            }
+
+            .display {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
-<body class="bg-dark">
-    <div class="container position-relative">
-        <!-- BOTÓN DE REGRESO A LA APP PRINCIPAL -->
-        <button class="header-btn" onclick="goBackToApp()" title="Regresar a Conversor">
-            <i class="fas fa-arrow-left"></i>
-        </button>
 
+<body>
+
+    <button class="back-btn" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <div class="app">
         <div class="calculator">
-            <!-- DISPLAY RESPONSIVE -->
-            <div class="display" id="display">0</div>
-            
-            <!-- FILA 1: C, ⌫, ÷, × -->
-            <div class="row g-2">
-                <div class="col-3">
-                    <button class="btn btn-calc btn-clear w-100" onclick="clearDisplay()">
-                        <i class="fas fa-trash"></i> C
-                    </button>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-calc btn-clear w-100" onclick="deleteLast()">⌫</button>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-calc btn-operator w-100" onclick="appendToDisplay('/')">÷</button>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-calc btn-operator w-100" onclick="appendToDisplay('*')">×</button>
-                </div>
-            </div>
+            <div id="display" class="display">0</div>
 
-            <!-- FILA 2: 1, 2, 3, - -->
-            <div class="row g-2">
-                <div class="col-3">
-                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('1')">1</button>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('2')">2</button>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('3')">3</button>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-calc btn-operator w-100" onclick="appendToDisplay('-')">-</button>
-                </div>
-            </div>
+            <div class="grid">
+                <button class="btn-calc btn-clear" onclick="clearAll()">C</button>
+                <button class="btn-calc btn-clear" onclick="deleteLast()"><i class="fas fa-delete-left"></i></button>
+                <button class="btn-calc btn-op" onclick="setOperator('/')">÷</button>
+                <button class="btn-calc btn-op" onclick="setOperator('*')">×</button>
 
-            <!-- FILA 3: 4, 5, 6, + -->
-            <div class="row g-2">
-                <div class="col-3">
-                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('4')">4</button>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('5')">5</button>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('6')">6</button>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-calc btn-operator w-100" onclick="appendToDisplay('+')">+</button>
-                </div>
-            </div>
+                <button class="btn-calc btn-num" onclick="inputNumber('7')">7</button>
+                <button class="btn-calc btn-num" onclick="inputNumber('8')">8</button>
+                <button class="btn-calc btn-num" onclick="inputNumber('9')">9</button>
+                <button class="btn-calc btn-op" onclick="setOperator('-')">−</button>
 
-            <!-- FILA 4: 7, 8, 9, = -->
-            <div class="row g-2">
-                <div class="col-3">
-                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('7')">7</button>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('8')">8</button>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('9')">9</button>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-calc btn-equals w-100" onclick="calculate()">=</button>
-                </div>
-            </div>
+                <button class="btn-calc btn-num" onclick="inputNumber('4')">4</button>
+                <button class="btn-calc btn-num" onclick="inputNumber('5')">5</button>
+                <button class="btn-calc btn-num" onclick="inputNumber('6')">6</button>
+                <button class="btn-calc btn-op" onclick="setOperator('+')">+</button>
 
-            <!-- FILA 5: 0, . -->
-            <div class="row g-2">
-                <div class="col-9">
-                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('0')" style="height:70px;">0</button>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-calc btn-number w-100" onclick="appendToDisplay('.')">.</button>
-                </div>
+                <button class="btn-calc btn-num" onclick="inputNumber('1')">1</button>
+                <button class="btn-calc btn-num" onclick="inputNumber('2')">2</button>
+                <button class="btn-calc btn-num" onclick="inputNumber('3')">3</button>
+                <button class="btn-calc btn-num" onclick="inputNumber('0')">0</button>
+                <button class="btn-calc btn-num" onclick="inputDecimal()">.</button>
+                <button class="btn-calc btn-num" onclick="inputDecimal()"></button>
+                
+                <button class="btn-calc btn-eq" onclick="calculate()">=</button>
+                
+
+                <button class="btn-calc btn-num invisible"></button>
+                <button class="btn-calc btn-num invisible"></button>
             </div>
         </div>
     </div>
 
     <script>
-        // VARIABLES GLOBALES
-        let display = document.getElementById('display');
-        let currentInput = '0';
+        class Calculator {
+            constructor() {
+                this.display = document.getElementById('display');
+                this.current = '0';
+                this.prev = null;
+                this.operator = null;
+                this.waiting = false;
+                this.update();
+            }
 
-        // FUNCIÓN: REGRESA A LA APLICACIÓN PRINCIPAL
-        function goBackToApp() {
-            // Opción 1: Cierra la ventana (si se abrió con target="_blank")
-            if (window.opener) {
-                window.close();
-            } else {
-                // Opción 2: Regresa a página anterior
-                window.history.back();
+            inputNumber(n) {
+                if (this.waiting) {
+                    this.current = n;
+                    this.waiting = false;
+                } else {
+                    this.current = this.current === '0' ? n : this.current + n;
+                }
+                this.update();
+            }
+
+            inputDecimal() {
+                if (!this.current.includes('.')) {
+                    this.current += '.';
+                }
+                this.update();
+            }
+
+            setOperator(op) {
+                const value = parseFloat(this.current);
+
+                if (this.prev === null) {
+                    this.prev = value;
+                } else if (this.operator) {
+                    this.prev = this.calc(this.prev, value, this.operator);
+                }
+
+                this.operator = op;
+                this.waiting = true;
+                this.update();
+            }
+
+            calc(a, b, op) {
+                if (op === '+') return a + b;
+                if (op === '-') return a - b;
+                if (op === '*') return a * b;
+                if (op === '/') return b === 0 ? 0 : a / b;
+            }
+
+            calculate() {
+                if (this.operator) {
+                    this.current = this.calc(this.prev, parseFloat(this.current), this.operator).toString();
+                    this.prev = null;
+                    this.operator = null;
+                }
+                this.update();
+            }
+
+            clearAll() {
+                this.current = '0';
+                this.prev = null;
+                this.operator = null;
+                this.update();
+            }
+
+            deleteLast() {
+                this.current = this.current.length > 1 ? this.current.slice(0, -1) : '0';
+                this.update();
+            }
+
+            update() {
+                this.display.textContent = this.current;
             }
         }
 
-        // FUNCIÓN: Agrega números/operadores al display
-        function appendToDisplay(value) {
-            if (currentInput === '0' && !['+', '-', '*', '/', '÷'].includes(value)) {
-                currentInput = value;
-            } else {
-                currentInput += value;
-            }
-            updateDisplay();
-        }
+        const calc = new Calculator();
 
-        // FUNCIÓN: Limpia todo el display
-        function clearDisplay() {
-            currentInput = '0';
-            updateDisplay();
-        }
-
-        // FUNCIÓN: Borra último carácter
-        function deleteLast() {
-            currentInput = currentInput.slice(0, -1) || '0';
-            updateDisplay();
-        }
-
-        // FUNCIÓN: Realiza el cálculo
-        function calculate() {
-            try {
-                let expression = currentInput.replace('×', '*').replace('÷', '/');
-                let result = eval(expression);
-                result = Math.round(result * 100000000) / 100000000;
-                currentInput = result.toString();
-                updateDisplay();
-            } catch (error) {
-                display.textContent = 'Error';
-                currentInput = '0';
-                setTimeout(clearDisplay, 1500);
-            }
-        }
-
-        // FUNCIÓN: ACTUALIZA DISPLAY CON RESPONSIVE AUTOMÁTICO
-        function updateDisplay() {
-            display.textContent = currentInput;
-            const textLength = currentInput.length;
-            let fontSize = 2.5;
-            
-            if (textLength > 12) fontSize = 1.8;
-            else if (textLength > 9) fontSize = 2.1;
-            else if (textLength > 6) fontSize = 2.3;
-            
-            display.style.fontSize = fontSize + 'rem';
-        }
-
-        // EVENTOS DE TECLADO (INCLUYE ESCAPE PARA REGRESAR)
-        document.addEventListener('keydown', function(e) {
-            if (e.key >= '0' && e.key <= '9' || e.key === '.') {
-                appendToDisplay(e.key);
-            }
-            else if (e.key === '+' || e.key === '-') {
-                appendToDisplay(e.key);
-            }
-            else if (e.key === '*') {
-                appendToDisplay('×');
-            }
-            else if (e.key === '/') {
-                appendToDisplay('÷');
-            }
-            else if (e.key === 'Enter' || e.key === '=') {
-                calculate();
-            }
-            else if (e.key === 'Escape') {
-                goBackToApp(); // ESCAPE = REGRESAR
-            }
-            else if (e.key === 'Backspace') {
-                deleteLast();
-            }
-        });
+        window.inputNumber = n => calc.inputNumber(n);
+        window.inputDecimal = () => calc.inputDecimal();
+        window.setOperator = o => calc.setOperator(o);
+        window.calculate = () => calc.calculate();
+        window.clearAll = () => calc.clearAll();
+        window.deleteLast = () => calc.deleteLast();
     </script>
+
 </body>
+
 </html>
