@@ -1,7 +1,7 @@
 # 📦 Conversor de Bolivares (LEGACY)
 
 > ⚠️ **Este repositorio es LEGACY**  
-> 👉 Nueva versión mejorada V.3: [**Conversor de Monedas Pro**](https://github.com/jairo51067/conversor-monedas-pro)
+> 👉 Nueva versión mejorada V.3: [**Conversor de Monedas Pro**](https://jairo51067.github.io/conversor-monedas-pro/)
 
 ## 📚 Propósito de este repositorio
 
